@@ -1,0 +1,4 @@
+import "miniprotobuf.proto";
+extend google.protobuf.FieldOptions {
+  optional int32 length = 1001;
+}
