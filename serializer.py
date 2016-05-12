@@ -240,7 +240,7 @@ class Serializer:
         if not struct.IsInitialized() or ((not persistent_end) and (len(sbuffer) != actual_size)):
             # Possible illegal header
             if persistent_start:
-                self.unserialize(data[start_skip+20:], persistent_start, persistent_end, True)
+                self.unserialize(data[start_skip+20:], persistent_start, persistent_end, keep_remainder)
             # If the other call could not clear the remainder, keep it
             if (self.remainder == data[start_skip+20:]) and keep_remainder:
                 self.remainder = data[start_skip:]
@@ -252,5 +252,5 @@ class Serializer:
             self.remainder = data[start_skip + 20 + actual_size:]
         # If there might still be a message to read
         if len(self.remainder) > 0:
-            self.unserialize('', persistent_start, persistent_end, True)
+            self.unserialize('', persistent_start, persistent_end, keep_remainder)
 
