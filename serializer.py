@@ -77,6 +77,8 @@ class Serializer:
             :param value: the value to check (string, int or long)
             :param setting: the maximum length in bytes
         """
+        if value == "":
+            return False
         if (value is str) or (value is unicode):
             # Protobuf uses unicode strings internally
             return len(value.encode('utf-8')) > setting
