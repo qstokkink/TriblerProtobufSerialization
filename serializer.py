@@ -190,6 +190,9 @@ class Serializer:
         if not struct.IsInitialized():
             if keep_remainder:
                 self.remainder = data
+            # Possible illegal header
+            if persistent_start:
+                self.unserialize(data[20:], persistent_start, persistent_end, False)
             return
         end_skip = len(data) - len(sbuffer) - start_skip
         # Forward the (now valid) struct to the handlers
