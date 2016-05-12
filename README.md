@@ -83,7 +83,7 @@ class TestHandler:
 def test_handler(obj):
     print obj.cid + ", " + str(obj.vote) + ", " + str(obj.timestamp)
     
-s.add_package_handler(TestHandler())
+s.add_package_handler("my_community", TestHandler())
 s.add_handler("Votecast", test_handler)
 ```
 
@@ -125,7 +125,7 @@ def test_handler(obj):
     print "test_handler received: " + obj.cid + ", " + str(obj.vote) + ", " + str(obj.timestamp)
     
 s = Serializer()
-s.add_package_handler(TestHandler())
+s.add_package_handler("my_community", TestHandler())
 s.add_handler("Votecast", test_handler)
 
 # Encode
