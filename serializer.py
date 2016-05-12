@@ -77,10 +77,16 @@ class Serializer:
             :param value: the value to check (string, int or long)
             :param setting: the maximum length in bytes
         """
-        if isinstance(value, str):
+        if (value is str) or (value is unicode):
             # Protobuf uses unicode strings internally
             return len(value.encode('utf-8')) > setting
-        if isinstance(value, int) or isinstance(value, long):
+        # Recognize 0 as an int
+        try:
+            int(value)
+            return False # 0 is always allowed
+        except ValueError:
+            pass
+        if specint or (value is int) or (value is long):
             max_long = 0
             if value > 0:
                 max_long = (1 << (8*setting-1))-1
@@ -127,7 +133,7 @@ class Serializer:
             #   keyword arguments
             value = args[index] if index < len(args) else kwargs.get(field.name)
             # dict.get() returns None if the entry was not found
-            if not value:
+            if value == None:
                 raise FieldNotDefinedException("The field '" + field.name +
                     "' was not defined when serializing a '" + name + "'")
             try:
