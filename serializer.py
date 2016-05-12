@@ -76,6 +76,7 @@ class Serializer:
 
             :param value: the value to check (string, int or long)
             :param setting: the maximum length in bytes
+            :returns: if the value was larger than the setting
         """
         if value == "":
             return False
@@ -101,7 +102,7 @@ class Serializer:
                                 str(setting) + ") option to " + str(value) +
                                 ", not a string, int or long")
 
-    def check_field_length(self, field, value):
+    def _check_field_length(self, field, value):
         """Check if a field has a valid value set.
             Throws a FieldTooLongException if it doesn't.
 
@@ -148,22 +149,28 @@ class Serializer:
                 raise FieldWrongTypeException("Tried to set the field '" + field.name +
                     "' but " + str(e))
             # Check if a custom byte length was specified
-            self.check_field_length(field, value)
+            self._check_field_length(field, value)
             index += 1
         return pack('20s', name) + struct.SerializePartialToString()
 
-    def unserialize(self, data, persistent_start=True, 
-                    persistent_end=True, keep_remainder=False):
-        """Given some data, try to read serializations from it.
+    def _forward_message(self, name, message):
+        """Forward a message to its appropriate handlers
 
-            :param data: the raw binary data to interpret
-            :param persistent_start: while unserializable pop the first character
-            :param persistent_end: while unserializable pop the last character
-            :param keep_remainder: feed the data after a valid entry 
-                                    to the next call
+            :param name: the message name/type
+            :param message: the actual message object
         """
-        data = self.remainder + data
-        self.remainder = ''
+        if name in self.handlers:
+            for handler in self.handlers[name]:
+                handler(message)
+
+    def _unserialize_header(self, data, persistent_start):
+        """Find a message header in given data.
+
+            :param data: the data buffer
+            :param persistent_start: keep popping from the stream until a
+                                        valid header appears 
+            :returns: the header name (or ""), the garbage prefix length
+        """
         name = ""
         sbuffer = data
         # Skip characters until a valid message id appears
@@ -176,16 +183,19 @@ class Serializer:
             if not persistent_start:
                 break
             sbuffer = sbuffer[1:]
-        if not name:
-            if keep_remainder:
-                self.remainder = data
-            return
-        # The message id is valid
-        start_skip = len(data) - len(sbuffer)
-        sbuffer = data[start_skip+20:]
-        struct = self.messages[name]()
-        index_skip = 0
-        while (not struct.IsInitialized()) and (len(sbuffer) > 0):
+        return name, len(data) - len(sbuffer)
+
+    def _unserialize_body(self, data, struct, persistent_end):
+        """Try to read a valid Protocol Buffers definition from
+            the start of the data.
+
+            :param data: the data buffer
+            :param struct: the empty data container
+            :param persistent_end: keep popping from the end of
+                            the data until a message can be read
+            :returns: the message struct, its length
+        """
+        while (not struct.IsInitialized()) and (len(data) > 0):
             try:
                 # MergeFromString will ignore all data after it
                 # has finished parsing a message from the start
@@ -193,14 +203,40 @@ class Serializer:
                 # will parse `message` perfectly fine.
                 # This becomes a problem when `garbage` contains
                 # another message.
-                struct.MergeFromString(sbuffer)
+                struct.MergeFromString(data)
                 break
             except google.protobuf.message.DecodeError, e:
                 if not persistent_end:
                     break
-                index_skip += 1
-                sbuffer = data[20+start_skip:-index_skip]
-        actual_size = len(struct.SerializePartialToString())
+                if "Truncated" in str(e):
+                    break
+                data = data[:-1]
+        return struct, len(struct.SerializePartialToString())
+
+    def unserialize(self, data, persistent_start=True, 
+                    persistent_end=True, keep_remainder=False):
+        """Given some data, try to read serializations from it.
+
+            :param data: the raw binary data to interpret
+            :param persistent_start: while unserializable pop the first character
+            :param persistent_end: while unserializable pop the last character
+            :param keep_remainder: feed the data after a valid entry 
+                                    to the next call
+        """
+        # Consume the previous remainder
+        data = self.remainder + data
+        self.remainder = ''
+        # Get the message id
+        name, start_skip = self._unserialize_header(data, persistent_start)
+        if not name:
+            if keep_remainder:
+                self.remainder = data
+            return
+        # The message id is valid
+        sbuffer = data[start_skip+20:]
+        struct, actual_size = self._unserialize_body(sbuffer, 
+                                                        self.messages[name](), 
+                                                        persistent_end)
         if not struct.IsInitialized() or ((not persistent_end) and (len(sbuffer) != actual_size)):
             # Possible illegal header
             if persistent_start:
@@ -210,9 +246,7 @@ class Serializer:
                 self.remainder = data[start_skip:]
             return
         # Forward the (now valid) struct to the handlers
-        if name in self.handlers:
-            for handler in self.handlers[name]:
-                handler(struct)
+        self._forward_message(name, struct)
         # If we have leftovers, store them
         if keep_remainder and start_skip + 20 + actual_size < len(data):
             self.remainder = data[start_skip + 20 + actual_size:]
