@@ -151,6 +151,7 @@ class Serializer:
                                     to the next call
         """
         data = self.remainder + data
+        self.remainder = ''
         name = ""
         sbuffer = data
         # Skip characters until a valid message id appears
@@ -192,4 +193,7 @@ class Serializer:
         # If we have leftovers, store them
         if keep_remainder and end_skip:
             self.remainder = data[:-end_skip]
+        # If there might still be a message to read
+        if len(self.remainder) > 20:
+            self.unserialize('',keep_remainder=True)
 
