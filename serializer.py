@@ -5,7 +5,7 @@ from struct import error as struct_error
 import sys
 
 import messages
-import exceptions
+from exception import *
 
 class Serializer:
 
