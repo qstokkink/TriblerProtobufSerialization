@@ -143,6 +143,9 @@ class Serializer:
             except TypeError, e:
                 raise FieldWrongTypeException("Tried to set the field '" + field.name +
                     "' to " + str(e).replace('has type', 'which has the type'))
+            except ValueError, e:
+                raise FieldWrongTypeException("Tried to set the field '" + field.name +
+                    "' but " + str(e))
             # Check if a custom byte length was specified
             self.check_field_length(field, value)
             index += 1
