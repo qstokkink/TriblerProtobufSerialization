@@ -86,7 +86,7 @@ class Serializer:
             return False # 0 is always allowed
         except ValueError:
             pass
-        if specint or (value is int) or (value is long):
+        if (value is int) or (value is long):
             max_long = 0
             if value > 0:
                 max_long = (1 << (8*setting-1))-1
