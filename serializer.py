@@ -1,6 +1,6 @@
 import google.protobuf
 import logging
-from struct import pack, unpack_from
+from struct import pack, unpack_from, calcsize
 from struct import error as struct_error
 import sys
 
@@ -167,11 +167,13 @@ class Serializer:
         name = ""
         sbuffer = data
         # Skip characters until a valid message id appears
-        while persistent_start and len(sbuffer) > 20:
+        while len(sbuffer) > 20:
             (header, ) = unpack_from('20s', sbuffer)
             header = header.replace('\x00','')
             if header in self.messages:
                 name = header
+                break
+            if not persistent_start:
                 break
             sbuffer = sbuffer[1:]
         if not name:
@@ -180,35 +182,41 @@ class Serializer:
             return
         # The message id is valid
         start_skip = len(data) - len(sbuffer)
-        sbuffer = sbuffer[20:]
+        sbuffer = data[start_skip+20:]
         struct = self.messages[name]()
-        while persistent_end and (not struct.IsInitialized()) and (len(sbuffer) > 0):
+        index_skip = 0
+        while (not struct.IsInitialized()) and (len(sbuffer) > 0):
             try:
+                # MergeFromString will ignore all data after it
+                # has finished parsing a message from the start
+                # of the data. By default `message + garbage`
+                # will parse `message` perfectly fine.
+                # This becomes a problem when `garbage` contains
+                # another message.
                 struct.MergeFromString(sbuffer)
+                break
             except google.protobuf.message.DecodeError, e:
-                # This is nasty, but saves a lot of time
-                if 'Truncated' in str(e):
-                    # There is not enough message left
-                    if keep_remainder:
-                        self.remainder = data
-                    return
-                sbuffer = sbuffer[:-1]
-        if not struct.IsInitialized():
-            if keep_remainder:
-                self.remainder = data
+                if not persistent_end:
+                    break
+                index_skip += 1
+                sbuffer = data[20+start_skip:-index_skip]
+        actual_size = len(struct.SerializePartialToString())
+        if not struct.IsInitialized() or ((not persistent_end) and (len(sbuffer) != actual_size)):
             # Possible illegal header
             if persistent_start:
-                self.unserialize(data[20:], persistent_start, persistent_end, False)
+                self.unserialize(data[start_skip+20:], persistent_start, persistent_end, True)
+            # If the other call could not clear the remainder, keep it
+            if (self.remainder == data[start_skip+20:]) and keep_remainder:
+                self.remainder = data[start_skip:]
             return
-        end_skip = len(data) - len(sbuffer) - start_skip
         # Forward the (now valid) struct to the handlers
         if name in self.handlers:
             for handler in self.handlers[name]:
                 handler(struct)
         # If we have leftovers, store them
-        if keep_remainder and end_skip:
-            self.remainder = data[:-end_skip]
+        if keep_remainder and start_skip + 20 + actual_size < len(data):
+            self.remainder = data[start_skip + 20 + actual_size:]
         # If there might still be a message to read
-        if len(self.remainder) > 20:
-            self.unserialize('',keep_remainder=True)
+        if len(self.remainder) > 0:
+            self.unserialize('', persistent_start, persistent_end, True)
 
