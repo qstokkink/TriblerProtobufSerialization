@@ -82,7 +82,10 @@ class Serializer:
             return False
         if isinstance(value, str) or isinstance(value, unicode):
             # Protobuf uses unicode strings internally
-            return len(value.encode('utf-8')) > setting
+            try:
+                return len(value.encode('utf-8')) > setting
+            except ValueError:
+                pass
         # Recognize 0 as an int
         try:
             p = int(value)
@@ -208,7 +211,7 @@ class Serializer:
             except google.protobuf.message.DecodeError, e:
                 if not persistent_end:
                     break
-                if "Truncated" in str(e):
+                if str(e).startswith("Trunc"):
                     break
                 data = data[:-1]
         return struct, len(struct.SerializePartialToString())
