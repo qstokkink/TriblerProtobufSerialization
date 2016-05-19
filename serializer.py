@@ -116,8 +116,12 @@ class Serializer:
         for (option, setting) in options.ListFields():
             if option.name == "length":
                 if self.__gt_by_type(value, setting):
-                    raise FieldTooLongException("The field '" + field.name +
-                        "' is bigger than the allowed " + str(setting) + " bytes")
+                    if hasattr(field, "name"):
+                        raise FieldTooLongException("The field '" + field.name +
+                            "' is bigger than the allowed " + str(setting) + " bytes")
+                    else:
+                        raise FieldTooLongException("List element '" + str(value) +
+                            "' is bigger than the allowed " + str(setting) + " bytes")
 
     def _checked_set(self, struct, field, value):
         """Assign a value to a field and check 
@@ -130,8 +134,8 @@ class Serializer:
         setattr(struct, field, value)
         self._check_field_length(struct.DESCRIPTOR.fields_by_name[field], value)
 
-    def _get_options(self, struct):
-        return struct.DESCRIPTOR.GetOptions() if hasattr(struct, "DESCRIPTOR") else None
+    def _get_options(self, struct, field):
+        return struct.DESCRIPTOR.fields_by_name[field].GetOptions() if hasattr(struct, "DESCRIPTOR") else None
 
     def _map_onto(self, field_struct, value, options=None):
         """Set a field in a Protocol Buffers struct
@@ -157,7 +161,7 @@ class Serializer:
                     nested = field_struct.add()
                     # Composite lists will never
                     # need to be set by us
-                    self._map_onto(nested, sub, self._get_options(nested))
+                    self._map_onto(nested, sub)
                 else:
                     # Scalar lists will always
                     # need to be set by us
@@ -171,7 +175,7 @@ class Serializer:
             #   a.b.d = 2
             for key in value:
                 nested = getattr(field_struct, key)
-                r = self._map_onto(nested, value[key], self._get_options(nested))
+                r = self._map_onto(nested, value[key], self._get_options(field_struct, key))
                 if r:
                     self._checked_set(field_struct, key, r[0])
         elif isinstance(value, tuple):
@@ -182,7 +186,7 @@ class Serializer:
             fields = field_struct.DESCRIPTOR.fields
             for i in range(len(value)):
                 nested = getattr(field_struct, fields[i].name)
-                r = self._map_onto(nested, value[i], self._get_options(nested))
+                r = self._map_onto(nested, value[i], self._get_options(field_struct, fields[i].name))
                 if r:
                     self._checked_set(field_struct, fields[i].name, r[0])
         else:
@@ -214,7 +218,7 @@ class Serializer:
                 raise FieldNotDefinedException("The field '" + field.name +
                     "' was not defined when serializing a '" + name + "'")
             try:
-                r = self._map_onto(getattr(struct, field.name), value)
+                r = self._map_onto(getattr(struct, field.name), value, self._get_options(struct, field.name))
                 if r:
                     self._checked_set(struct, field.name, r[0])
             except TypeError, e:
