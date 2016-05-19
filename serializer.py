@@ -105,18 +105,88 @@ class Serializer:
                                 str(setting) + ") option to " + str(value) +
                                 ", not a string, int or long")
 
-    def _check_field_length(self, field, value):
+    def _check_field_length(self, field, value, options=None):
         """Check if a field has a valid value set.
             Throws a FieldTooLongException if it doesn't.
 
             :param field: the field descriptor object
             :param value: the value set for the field
         """
-        for (option, setting) in field.GetOptions().ListFields():
+        options = options if options else field.GetOptions()
+        for (option, setting) in options.ListFields():
             if option.name == "length":
                 if self.__gt_by_type(value, setting):
                     raise FieldTooLongException("The field '" + field.name +
                         "' is bigger than the allowed " + str(setting) + " bytes")
+
+    def _checked_set(self, struct, field, value):
+        """Assign a value to a field and check 
+            all custom options.
+
+            :param struct: the protobuf (nested) struct
+            :param field: the field name to set
+            :param value: the value to set it to
+        """
+        setattr(struct, field, value)
+        self._check_field_length(struct.DESCRIPTOR.fields_by_name[field], value)
+
+    def _get_options(self, struct):
+        return struct.DESCRIPTOR.GetOptions() if hasattr(struct, "DESCRIPTOR") else None
+
+    def _map_onto(self, field_struct, value, options=None):
+        """Set a field in a Protocol Buffers struct
+            to a certain value.
+
+            For example:
+                _map_onto(a.b, (1, 2))
+            Sets:
+                a.b[0] = 1
+                a.b[1] = 2
+
+            :param field_struct: the protobuf (nested) struct
+            :param value: the value to set it to
+            :param options: options for list types
+        """
+        if isinstance(value, list):
+            # Fill 'repeated' structure
+            # a.b = [1, 2]
+            #   a.b.add() = 1
+            #   a.b.add() = 2
+            for sub in value:
+                if hasattr(field_struct, "add"):
+                    nested = field_struct.add()
+                    # Composite lists will never
+                    # need to be set by us
+                    self._map_onto(nested, sub, self._get_options(nested))
+                else:
+                    # Scalar lists will always
+                    # need to be set by us
+                    field_struct.append(sub)
+                    if options:
+                        self._check_field_length(field_struct, sub, options)
+        elif isinstance(value, dict):
+            # Fill message structure
+            # a.b = {c: 1, d: 2}
+            #   a.b.c = 1
+            #   a.b.d = 2
+            for key in value:
+                nested = getattr(field_struct, key)
+                r = self._map_onto(nested, value[key], self._get_options(nested))
+                if r:
+                    self._checked_set(field_struct, key, r[0])
+        elif isinstance(value, tuple):
+            # Fill message structure (in order)
+            # a.b = (1, 2)
+            #   a.b.c = 1
+            #   a.b.d = 2
+            fields = field_struct.DESCRIPTOR.fields
+            for i in range(len(value)):
+                nested = getattr(field_struct, fields[i].name)
+                r = self._map_onto(nested, value[i], self._get_options(nested))
+                if r:
+                    self._checked_set(field_struct, fields[i].name, r[0])
+        else:
+            return [value, ]
 
     def serialize(self, name, *args, **kwargs):
         """Serialize a message of a certain type.
@@ -144,15 +214,15 @@ class Serializer:
                 raise FieldNotDefinedException("The field '" + field.name +
                     "' was not defined when serializing a '" + name + "'")
             try:
-                setattr(struct, field.name, value)
+                r = self._map_onto(getattr(struct, field.name), value)
+                if r:
+                    self._checked_set(struct, field.name, r[0])
             except TypeError, e:
                 raise FieldWrongTypeException("Tried to set the field '" + field.name +
                     "' to " + str(e).replace('has type', 'which has the type'))
             except ValueError, e:
                 raise FieldWrongTypeException("Tried to set the field '" + field.name +
                     "' but " + str(e))
-            # Check if a custom byte length was specified
-            self._check_field_length(field, value)
             index += 1
         return pack('20s', name) + struct.SerializePartialToString()
 
@@ -196,9 +266,10 @@ class Serializer:
             :param struct: the empty data container
             :param persistent_end: keep popping from the end of
                             the data until a message can be read
-            :returns: the message struct, its length
+            :returns: is valid, the message struct, its length
         """
-        while (not struct.IsInitialized()) and (len(data) > 0):
+        initialized = False
+        while len(data) > 0:
             try:
                 # MergeFromString will ignore all data after it
                 # has finished parsing a message from the start
@@ -207,14 +278,15 @@ class Serializer:
                 # This becomes a problem when `garbage` contains
                 # another message.
                 struct.MergeFromString(data)
+                initialized = True
                 break
             except google.protobuf.message.DecodeError, e:
-                if not persistent_end:
-                    break
                 if str(e).startswith("Trunc"):
                     break
-                data = data[:-1]
-        return struct, len(struct.SerializePartialToString())
+            if not persistent_end:
+                break
+            data = data[:-1]
+        return initialized, struct, len(struct.SerializePartialToString())
 
     def unserialize(self, data, persistent_start=True, 
                     persistent_end=True, keep_remainder=False):
@@ -237,10 +309,10 @@ class Serializer:
             return
         # The message id is valid
         sbuffer = data[start_skip+20:]
-        struct, actual_size = self._unserialize_body(sbuffer, 
+        initialized, struct, actual_size = self._unserialize_body(sbuffer, 
                                                         self.messages[name](), 
                                                         persistent_end)
-        if not struct.IsInitialized() or ((not persistent_end) and (len(sbuffer) != actual_size)):
+        if (not initialized) or ((not persistent_end) and (len(sbuffer) != actual_size)):
             # Possible illegal header
             if persistent_start:
                 self.unserialize(data[start_skip+20:], persistent_start, persistent_end, keep_remainder)
