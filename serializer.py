@@ -135,6 +135,11 @@ class Serializer:
         self._check_field_length(struct.DESCRIPTOR.fields_by_name[field], value)
 
     def _get_options(self, struct, field):
+        """Get options for a field, if the struct supports it.
+
+            :param struct: the struct holding the descriptor
+            :param field: the name of the field to get the options for
+        """
         return struct.DESCRIPTOR.fields_by_name[field].GetOptions() if hasattr(struct, "DESCRIPTOR") else None
 
     def _map_onto(self, field_struct, value, options=None):

@@ -1,0 +1,9 @@
+import "defaults.proto";
+
+message TestComplex {
+	message Nested {
+		required string normal = 1 [(length) = 20];
+		repeated string multiple = 2 [(length) = 20];
+	}
+	repeated Nested nesteds = 1;
+}
