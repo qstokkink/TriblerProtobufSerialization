@@ -93,12 +93,6 @@ class TestSerialize(unittest.TestCase):
         with self.assertRaises(UnknownMessageException):
             self.s.serialize("Unknown")
 
-    def test_long_message_name(self):
-        longname = "aaaaaaaaaaaaaaaaaaaaa"
-        self.s.messages[longname] = "hi"
-        with self.assertRaises(MessageNameTooLongException):
-            self.s.serialize(longname)
-
     def test_incomplete_definition_empty(self):
         with self.assertRaises(FieldNotDefinedException):
             self.s.serialize("Test")
@@ -132,6 +126,12 @@ class TestSerialize(unittest.TestCase):
         args[29] = chr(128)
         with self.assertRaises(FieldLengthUnsupportedException):
             self.s.serialize("Test", *args)
+
+    def test_hash_name(self):
+        name = "test"
+        for i in range(1,9):
+            self.assertEqual(len(self.s._hash_name(name, i)),
+                                min(i, len(name)))
 
     def test_reload_definitions(self):
         class T(logging.Filter):

@@ -18,11 +18,29 @@ class Serializer:
 
             :param autoload: call load_definitions after initialization
         """
+        self.header_size = 20
         self.messages = {}
+        self.message_hashes = {}
         self.handlers = {}
         self.remainder = ""
         if autoload:
             self.load_definitions()
+
+    def _hash_name(self, name, length=None):
+        """Fit a name to a certain length.
+
+            :param name: the name to hash
+            :param length: fit to something else than header_size
+            :returns: the hashed name
+        """
+        if not length:
+            length = self.header_size
+        hashed = name[:min(length, len(name))]
+        for x in range(length, len(name), length):
+            rem = min(x+length,len(name))-x
+            for i in range(rem):
+                hashed = hashed[:i] + chr(ord(name[x + i]) ^ ord(hashed[i])) + hashed[i+1:]
+        return hashed
 
     def load_definitions(self):
         """Load the protobuffers definitions from the messages module.
@@ -30,10 +48,12 @@ class Serializer:
         for module in messages.MESSAGES:
             names = module.DESCRIPTOR.message_types_by_name
             for message_name in names:
-                if message_name in self.messages:
+                hashed_name = self._hash_name(message_name)
+                if hashed_name in self.messages:
                     logging.warning("Serializer read duplicate message!" +
                                         "Overwriting definition of " + message_name)
-                self.messages[message_name] = getattr(module, message_name)
+                self.messages[hashed_name] = getattr(module, message_name)
+                self.message_hashes[hashed_name] = message_name
 
     def add_handler(self, name, callback):
         """Add a callback to be fired when a certain message type has been
@@ -205,12 +225,10 @@ class Serializer:
             :param kwargs: the (remaining) fields of the message by field name
             :returns: the serialization as a binary string 
         """ 
+        name = self._hash_name(name)
         if not (name in self.messages):
             raise UnknownMessageException("Tried to provide serialization for " + 
                                             "unknown message '" + name + "'")
-        if len(name) > 20:
-            raise MessageNameTooLongException("The message name " + name +
-                                                " is longer than 20 characters")
         struct = self.messages[name]()
         index = 0
         for field in struct.DESCRIPTOR.fields:
@@ -233,7 +251,7 @@ class Serializer:
                 raise FieldWrongTypeException("Tried to set the field '" + field.name +
                     "' but " + str(e))
             index += 1
-        return pack('20s', name) + struct.SerializePartialToString()
+        return pack(str(self.header_size) + 's', name) + struct.SerializePartialToString()
 
     def _forward_message(self, name, message):
         """Forward a message to its appropriate handlers
@@ -241,8 +259,9 @@ class Serializer:
             :param name: the message name/type
             :param message: the actual message object
         """
-        if name in self.handlers:
-            for handler in self.handlers[name]:
+        unhashed = self.message_hashes[name]
+        if unhashed in self.handlers:
+            for handler in self.handlers[unhashed]:
                 handler(message)
 
     def _unserialize_header(self, data, persistent_start):
@@ -256,8 +275,8 @@ class Serializer:
         name = ""
         sbuffer = data
         # Skip characters until a valid message id appears
-        while len(sbuffer) > 20:
-            (header, ) = unpack_from('20s', sbuffer)
+        while len(sbuffer) > self.header_size:
+            (header, ) = unpack_from(str(self.header_size) + 's', sbuffer)
             header = header.replace('\x00','')
             if header in self.messages:
                 name = header
@@ -317,23 +336,23 @@ class Serializer:
                 self.remainder = data
             return
         # The message id is valid
-        sbuffer = data[start_skip+20:]
+        sbuffer = data[start_skip+self.header_size:]
         initialized, struct, actual_size = self._unserialize_body(sbuffer, 
                                                         self.messages[name](), 
                                                         persistent_end)
         if (not initialized) or ((not persistent_end) and (len(sbuffer) != actual_size)):
             # Possible illegal header
             if persistent_start:
-                self.unserialize(data[start_skip+20:], persistent_start, persistent_end, keep_remainder)
+                self.unserialize(data[start_skip+self.header_size:], persistent_start, persistent_end, keep_remainder)
             # If the other call could not clear the remainder, keep it
-            if (self.remainder == data[start_skip+20:]) and keep_remainder:
+            if (self.remainder == data[start_skip+self.header_size:]) and keep_remainder:
                 self.remainder = data[start_skip:]
             return
         # Forward the (now valid) struct to the handlers
         self._forward_message(name, struct)
         # If we have leftovers, store them
-        if keep_remainder and start_skip + 20 + actual_size < len(data):
-            self.remainder = data[start_skip + 20 + actual_size:]
+        if keep_remainder and start_skip + self.header_size + actual_size < len(data):
+            self.remainder = data[start_skip + self.header_size + actual_size:]
         # If there might still be a message to read
         if len(self.remainder) > 0:
             self.unserialize('', persistent_start, persistent_end, keep_remainder)
