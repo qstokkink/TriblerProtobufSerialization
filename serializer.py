@@ -305,7 +305,7 @@ class Serializer:
                 # will parse `message` perfectly fine.
                 # This becomes a problem when `garbage` contains
                 # another message.
-                struct.MergeFromString(data)
+                struct.ParseFromString(data)
                 initialized = True
                 break
             except google.protobuf.message.DecodeError, e:
@@ -351,7 +351,7 @@ class Serializer:
         # Forward the (now valid) struct to the handlers
         self._forward_message(name, struct)
         # If we have leftovers, store them
-        if keep_remainder and start_skip + self.header_size + actual_size < len(data):
+        if start_skip + self.header_size + actual_size < len(data):
             self.remainder = data[start_skip + self.header_size + actual_size:]
         # If there might still be a message to read
         if len(self.remainder) > 0:
