@@ -55,7 +55,7 @@ class TestSerialize(unittest.TestCase):
         enc = self.s.serialize("Test", *self.blank_args)
         (name, ) = struct.unpack_from('20s', enc)
 
-        self.assertTrue(name.startswith('Test'))
+        self.assertTrue(name.startswith('test_pb2Test'))
 
     def test_values(self):
         enc = self.s.serialize("Test", *self.blank_args)
@@ -142,9 +142,9 @@ class TestSerialize(unittest.TestCase):
         filter.called = False
         logging.getLogger().addFilter(filter)
 
-        self.assertIn("Test", self.s.messages)
+        self.assertIn("test_pb2Test", self.s.messages)
         self.s.load_definitions()
-        self.assertIn("Test", self.s.messages)
+        self.assertIn("test_pb2Test", self.s.messages)
         self.assertTrue(filter.called)
 
         logging.getLogger().removeFilter(filter)

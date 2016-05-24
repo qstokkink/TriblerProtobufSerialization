@@ -21,6 +21,7 @@ class Serializer:
         self.header_size = 20
         self.messages = {}
         self.message_hashes = {}
+        self.message_rhashes = {}
         self.handlers = {}
         self.remainder = ""
         if autoload:
@@ -47,13 +48,15 @@ class Serializer:
         """
         for module in messages.MESSAGES:
             names = module.DESCRIPTOR.message_types_by_name
+            prefix = module.__name__.split('.')[-1]
             for message_name in names:
-                hashed_name = self._hash_name(message_name)
+                hashed_name = self._hash_name(prefix + message_name)
                 if hashed_name in self.messages:
                     logging.warning("Serializer read duplicate message!" +
                                         "Overwriting definition of " + message_name)
                 self.messages[hashed_name] = getattr(module, message_name)
                 self.message_hashes[hashed_name] = message_name
+                self.message_rhashes[message_name] = hashed_name
 
     def add_handler(self, name, callback):
         """Add a callback to be fired when a certain message type has been
@@ -225,10 +228,11 @@ class Serializer:
             :param kwargs: the (remaining) fields of the message by field name
             :returns: the serialization as a binary string 
         """ 
-        name = self._hash_name(name)
-        if not (name in self.messages):
+        if not (name in self.message_rhashes):
             raise UnknownMessageException("Tried to provide serialization for " + 
                                             "unknown message '" + name + "'")
+
+        name = self.message_rhashes[name]
         struct = self.messages[name]()
         index = 0
         for field in struct.DESCRIPTOR.fields:
