@@ -28,8 +28,8 @@ This is a custom option to specify the maximum number of bytes a field can _maxi
 Because values are packed, this will - in almost all cases - never be the actual amount of bytes the field will use _on-wire_.
 
 ### Compile using the compiler
-To compile your fresh `.proto` just call the `compiler.py` script in the `src/` folder.
-This will create a file calle `<your_proto_file_name>_pb2.py`.
+To compile your fresh `.proto` just call the `compiler.py` script in the `src/` folder (make sure to install the protoc compiler first: `sudo apt-get install protobuf-compiler`).
+This will create a file called `<your_proto_file_name>_pb2.py`.
 In our previous example:
 
 ```sh
@@ -47,7 +47,7 @@ MESSAGES = [__import_handle('my_community_pb2')]
 ```
 
 ## Using the Serializer
-Here we assume you have added at least one message to the file tree as described in the previous section.
+Here we assume you have added at least one message to the file tree as described in the previous section. You will also need to have Protocol Buffers installed (`sudo apt-get install python-protobuf`).
 To use the Serializer you need to create a `Serializer` instance (you can have multiple instances if you want):
 ```python
 from serializer import Serializer
