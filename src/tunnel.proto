@@ -1,0 +1,149 @@
+import "defaults.proto";
+
+message TunnelIntroResponse {
+    required bool exitnode = 1;
+}
+
+message TunnelIntroRequest {
+    required bool exitnode = 1;
+}
+
+message Cell {
+    required uint32 circuitid = 1;
+    required uint32 encodemessage = 2 [(length) = 1];
+    required bytes encryptedmessage = 3;
+}
+
+message Create {
+    required uint32 circuitid = 1;
+    required string nodeid = 2 [(length) = 20];
+    required string nodepublickey = 3;
+    required string key = 4;
+}
+
+message Created {
+    required uint32 circuitid = 1;
+    required string auth = 2 [(length) = 32];
+    required string key = 3;
+    repeated string candidates = 4;
+}
+
+message Extend {
+    required uint32 circuitid = 1;
+    required string nodeid = 2 [(length) = 20];
+    required string nodepublickey = 3;
+    required string key = 4;
+    optional string host = 5 [(length) = 4];
+    optional uint32 port = 6 [(length) = 2];
+}
+
+message Extended {
+    required uint32 circuitid = 1;
+    required string auth = 2 [(length) = 32];
+    required string key = 3;
+    repeated string candidates = 4;
+}
+
+message Ping {
+    required uint32 circuitid = 1;
+    required uint32 identifier = 2 [(length) = 2];
+}
+
+message Pong {
+    required uint32 circuitid = 1;
+    required uint32 identifier = 2 [(length) = 2];
+}
+
+message StatsRequest {
+    required uint32 identifier = 1 [(length) = 2];
+}
+
+message StatsResponse {
+    required uint32 identifier = 1 [(length) = 2];
+    required uint32 uptime = 2;
+    required uint64 bytesup = 3;
+    required uint64 bytesdown = 4;
+    required uint64 bytesrelayup = 5;
+    required uint64 bytesrelaydown = 6;
+    required uint64 bytesenter = 7;
+    required uint64 bytesexit = 8;
+}
+
+message Destroy {
+    required uint32 circuitid = 1;
+    required uint32 reason = 2 [(length) = 2];
+}
+
+message EstablishIntro {
+    required uint32 circuitid = 1;
+    required uint32 identifier = 2 [(length) = 2];
+    required string infohash = 3 [(length) = 20];
+}
+
+message IntroEstablished {
+    required uint32 circuitid = 1;
+    required uint32 identifier = 2 [(length) = 2];
+}
+
+message KeyRequest {
+    required uint32 identifier = 1 [(length) = 2];
+    required string infohash = 2 [(length) = 20];
+}
+
+message KeyResponse {
+    required uint32 identifier = 1 [(length) = 2];
+    required string publickey = 2;
+    repeated string pexpeers = 3;
+}
+
+message EstablishRendezvous {
+    required uint32 circuitid = 1;
+    required uint32 identifier = 2 [(length) = 2];
+    required string cookie = 3 [(length) = 20];
+}
+
+message RendezvousEstablished {
+    required uint32 circuitid = 1;
+    required uint32 identifier = 2 [(length) = 2];
+    required string host = 3 [(length) = 4];
+    required uint32 port = 4 [(length) = 2];
+}
+
+message CreateE2E {
+    required uint32 identifier = 1 [(length) = 2];
+    required string infohash = 2 [(length) = 20];
+    required string nodeid = 3 [(length) = 20];
+    required string nodepublickey = 4;
+    required string key = 5;
+}
+
+message CreatedE2E {
+    required uint32 identifier = 1 [(length) = 2];
+    required string auth = 2 [(length) = 32];
+    required string key = 3;
+    required string rpsockaddr = 4;
+}
+
+message LinkE2E {
+    required uint32 circuitid = 1;
+    required uint32 identifier = 2 [(length) = 2];
+    required string cookie = 3 [(length) = 20];
+}
+
+message LinkedE2E {
+    required uint32 circuitid = 1;
+    required uint32 identifier = 2 [(length) = 2];
+}
+
+message DHTRequest {
+    required uint32 circuitid = 1;
+    required uint32 identifier = 2 [(length) = 2];
+    required string infohash = 3 [(length) = 20];
+}
+
+message DHTReponse {
+    required uint32 circuitid = 1;
+    required uint32 identifier = 2 [(length) = 2];
+    required string infohash = 3 [(length) = 20];
+    repeated string peers = 4;
+}

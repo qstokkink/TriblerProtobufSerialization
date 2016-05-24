@@ -1,0 +1,38 @@
+import "defaults.proto";
+
+message Signature {
+	required uint32 up = 1;
+	required uint32 down = 2;
+	required uint64 totaluprequester = 3;
+	required uint64 totaldownrequester = 4;
+	required int32 sequencenumberrequester = 5;
+	required string previoushashrequester = 6 [(length) = 32];
+	required uint64 totalupresponder = 7;
+	required uint64 totaldownresponder = 8;
+	required int32 sequencenumberresponder = 9;
+	required string previoushashresponder = 10 [(length) = 32];
+}
+
+message CrawlRequest {
+	required int32 requestedsequencenumber = 1;
+}
+
+message CrawlResponse {
+	required uint32 up = 1;
+	required uint32 down = 2;
+	required uint64 totaluprequester = 3;
+	required uint64 totaldownrequester = 4;
+	required int32 sequencenumberrequester = 5;
+	required string previoushashrequester = 6 [(length) = 32];
+	required uint64 totalupresponder = 7;
+	required uint64 totaldownresponder = 8;
+	required int32 sequencenumberresponder = 9;
+	required string previoushashresponder = 10 [(length) = 32];
+	required string signaturerequester = 11 [(length) = 74];
+	required string publickeyrequester = 12 [(length) = 64];
+	required string signatureresponder = 13 [(length) = 74];
+	required string publickeyresponder = 14 [(length) = 64];
+}
+
+message CrawlResume {
+}

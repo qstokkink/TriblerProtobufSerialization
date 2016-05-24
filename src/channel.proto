@@ -1,0 +1,68 @@
+import "defaults.proto";
+
+message Channel {
+	required string name = 1 [(length) = 255];
+	required string description = 2 [(length) = 1023];
+}
+
+message Torrent {
+	message File {
+		required string path = 1;
+		required int64 length = 2;
+	}
+	required string infohash = 1 [(length) = 20];
+	required uint64 timestamp = 2;
+	required string name = 3;
+	repeated File files = 4;
+	repeated string trackers = 5;
+}
+
+message Comment {
+	required string text = 1;
+	required int64 timestamp = 2;
+	required string playlistpacket = 3 [(length) = 20];
+	required string infohash = 4 [(length) = 20];
+	required string replytomid = 5 [(length) = 20];
+	required int64 replytoglobaltime = 6;
+	required string replyaftermid = 7 [(length) = 20];
+	required int64 replyafterglobaltime = 8;
+	required string playlistmid = 9 [(length) = 20];
+	required int64 playlistglobaltime = 10;
+}
+
+message Modification {
+	required string modificationtype = 1;
+	required string modificationvalue = 2 [(length) = 1023];
+	required int64 timestamp = 3;
+	required string mid = 4 [(length) = 20];
+	required int64 globaltime = 5;
+}
+
+message PlaylistTorrent {
+	required string infohash = 1 [(length) = 20];
+	required string mid = 2 [(length) = 20];
+	required uint64 globaltime = 3;
+}
+
+message MissingChannel {
+	required bool includeSnapshot = 1;
+}
+
+message Moderation {
+	required string text = 1 [(length) = 1023];
+	required int64 timestamp = 2;
+	required int64 severity = 3;
+	required string causemid = 4 [(length) = 20];
+	required int64 causeglobaltime = 5;
+}
+
+message MarkTorrent {
+	required string infohash = 1 [(length) = 20];
+	required int64 timestamp = 2;
+	required string type = 3 [(length) = 24];
+}
+
+message Playlist {
+	required string name = 1 [(length) = 255];
+	required string description = 2 [(length) = 1023];
+}

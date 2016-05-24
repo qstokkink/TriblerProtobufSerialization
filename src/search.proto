@@ -1,0 +1,76 @@
+import "defaults.proto";
+
+message TasteIntroduction {
+    required uint32 numpreferences = 1;
+    required uint32 tastebloomfilterfunctions = 2 [(length) = 1];
+    required string tastebloomfilterprefix = 3 [(length) = 255];
+    required bytes tastebloomfilter = 4;
+}
+
+message SearchRequest {
+    required uint32 identifier = 1 [(length) = 2];
+    repeated string keywords = 2;
+    required uint32 bloomfilterfunctions = 3;
+    required string bloomfilterprefix = 4 [(length) = 255];
+    required bytes bloomfilterbytes = 5;
+}
+
+message SearchResponse {
+    message Result {
+        required string infohash = 1 [(length) = 20];
+        required string swarmname = 2;
+        required int64 len = 3;
+        required int32 nrfiles = 4;
+        repeated string categorylist = 5;
+        required int64 creationdate = 6;
+        required int32 seeders = 7;
+        required int32 leechers = 8;
+        optional string cid = 9 [(length) = 20];
+    }
+    required uint32 identifier = 1 [(length) = 2];
+    repeated Result results = 2;
+}
+
+message TorrentRequest {
+    message Torrent {
+		required string cid = 1 [(length) = 20];
+		repeated string infohashes = 2 [(length) = 20];
+	}
+	repeated Torrent torrents = 1;
+}
+
+message TorrentCollectRequest {
+    message Torrent {
+        required string infohash = 1 [(length) = 20];
+        required uint32 seeders = 2 [(length) = 2];
+        required uint32 leechers = 3 [(length) = 2];
+        required uint32 ago = 4 [(length) = 2];
+    }
+    required uint32 indentifier = 1 [(length) = 2];
+    required uint32 hashtype = 2 [(length) = 2];
+    repeated Torrent torrents = 3;
+}
+
+message TorrentCollectResponse {
+    message Torrent {
+        required string infohash = 1 [(length) = 20];
+        required uint32 seeders = 2 [(length) = 2];
+        required uint32 leechers = 3 [(length) = 2];
+        required uint32 ago = 4 [(length) = 2];
+    }
+    required uint32 indentifier = 1 [(length) = 2];
+    required uint32 hashtype = 2 [(length) = 2];
+    repeated Torrent torrents = 3;
+}
+
+message Torrent {
+	message File {
+		required string path = 1;
+		required int64 length = 2;
+	}
+	required string infohash = 1 [(length) = 20];
+	required uint64 timestamp = 2;
+	required string name = 3;
+	repeated File files = 4;
+	repeated string trackers = 5;
+}

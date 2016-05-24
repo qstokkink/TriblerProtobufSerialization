@@ -1,0 +1,36 @@
+import "defaults.proto";
+
+message ChannelCast {
+	message Torrent {
+		required string cid = 1 [(length) = 20];
+		repeated string infohashes = 2 [(length) = 20];
+	}
+	repeated Torrent torrents = 1;
+}
+
+message ChannelCastRequest {
+	message Torrent {
+		required string cid = 1 [(length) = 20];
+		repeated string infohashes = 2 [(length) = 20];
+	}
+	repeated Torrent torrents = 1;
+}
+
+message ChannelSearch {
+	repeated string keywords = 1;
+}
+
+message ChannelSearchResponse {
+	message Torrent {
+		required string cid = 1 [(length) = 20];
+		repeated string infohashes = 2 [(length) = 20];
+	}
+	repeated string keywords = 1;
+	repeated Torrent torrents = 2;
+}
+
+message Votecast {
+	required string cid = 1 [(length) = 20];
+	required int32 vote = 2 [(length) = 2];
+	required int64 timestamp = 3;
+}

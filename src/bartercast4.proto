@@ -1,0 +1,14 @@
+import "defaults.proto";
+
+message StatsRequest {
+	required int32 statstype = 1;
+}
+
+message StatsResponse {
+	message Record {
+		required string peerid = 1 [(length) = 65535];
+		required int32 value = 2;
+	}
+	required int32 statstype = 1;
+	repeated Record records = 2;
+}

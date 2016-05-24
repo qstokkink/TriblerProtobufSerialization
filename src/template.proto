@@ -1,0 +1,5 @@
+import "defaults.proto";
+
+message Text {
+	required uint32 text = 1 [(length) = 1];
+}
