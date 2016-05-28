@@ -329,6 +329,7 @@ class Serializer:
             :param persistent_end: while unserializable pop the last character
             :param keep_remainder: feed the data after a valid entry 
                                     to the next call
+            :returns: all of the read messages in the data
         """
         # Consume the previous remainder
         data = self.remainder + data
@@ -353,11 +354,13 @@ class Serializer:
                 self.remainder = data[start_skip:]
             return
         # Forward the (now valid) struct to the handlers
+        return_list = [(self.message_hashes[name], struct)]
         self._forward_message(name, struct)
         # If we have leftovers, store them
         if start_skip + self.header_size + actual_size < len(data):
             self.remainder = data[start_skip + self.header_size + actual_size:]
         # If there might still be a message to read
         if len(self.remainder) > 0:
-            self.unserialize('', persistent_start, persistent_end, keep_remainder)
+            return_list.append(self.unserialize('', persistent_start, persistent_end, keep_remainder))
+        return return_list
 
