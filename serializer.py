@@ -218,7 +218,7 @@ class Serializer:
                 if r:
                     self._checked_set(field_struct, fields[i].name, r[0])
         else:
-            return [value, ]
+            return [unicode(value) if isinstance(value, unicode) else value, ]
 
     def serialize(self, name, *args, **kwargs):
         """Serialize a message of a certain type.
