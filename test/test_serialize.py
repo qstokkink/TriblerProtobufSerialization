@@ -143,5 +143,11 @@ class TestSerialize(unittest.TestCase):
 
         logging.getLogger().removeFilter(filter)
 
+    def test_wrong_type_value_check(self):
+        args = self.blank_args[:]
+        args[1] = 1.10
+        with self.assertRaises(FieldLengthUnsupportedException):
+            self.s.serialize("Test", *args)
+
 if __name__ == '__main__':
     unittest.main()

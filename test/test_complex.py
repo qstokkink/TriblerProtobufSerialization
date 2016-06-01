@@ -79,10 +79,5 @@ class TestSerialize(unittest.TestCase):
         self.s.unserialize(enc)
         self.assertEqual(self.calls, 1)
 
-    def test_wrong_type_value_check(self):
-        illegal = chr(128) * 2
-        with self.assertRaises(FieldLengthUnsupportedException):
-            self.s.serialize("TestComplex", [("", [illegal])])
-
 if __name__ == '__main__':
     unittest.main()

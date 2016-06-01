@@ -104,11 +104,7 @@ class Serializer:
         if value == "":
             return False
         if isinstance(value, str) or isinstance(value, unicode):
-            # Protobuf uses unicode strings internally
-            try:
-                return len(value.encode('utf-8')) > setting
-            except ValueError:
-                pass
+            return len(value) > setting
         # Recognize 0 as an int
         try:
             p = int(value)
