@@ -65,11 +65,12 @@ class TestSerialize(unittest.TestCase):
             self.s.serialize("TestComplex", [("", ["longerthantwentycharacters"])])
 
     def test_unicode_strings(self):
-        enc = self.s.serialize("TestComplex", [(unichr(8224), ["m1", "m2"])])
+        sbs = '}\xc8A\xc1\x8a}D\xe8\xea\x93}'
+        enc = self.s.serialize("TestComplex", [(sbs, ["m1", "m2"])])
 
         def f(obj):
             self.assertTrue(obj.IsInitialized())
-            self.assertEqual(obj.nesteds[0].normal, unichr(8224))
+            self.assertEqual(obj.nesteds[0].normal, u'}\xc8A\xc1\x8a}D\xe8\xea\x93}')
             self.assertEqual(obj.nesteds[0].multiple[0], "m1")
             self.assertEqual(obj.nesteds[0].multiple[1], "m2")
             self.calls += 1
@@ -77,6 +78,11 @@ class TestSerialize(unittest.TestCase):
         self.s.add_handler("TestComplex", f)
         self.s.unserialize(enc)
         self.assertEqual(self.calls, 1)
+
+    def test_wrong_type_value_check(self):
+        illegal = chr(128) * 2
+        with self.assertRaises(FieldLengthUnsupportedException):
+            self.s.serialize("TestComplex", [("", [illegal])])
 
 if __name__ == '__main__':
     unittest.main()
