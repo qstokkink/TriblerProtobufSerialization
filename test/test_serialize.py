@@ -121,12 +121,6 @@ class TestSerialize(unittest.TestCase):
         with self.assertRaises(FieldWrongTypeException):
             self.s.serialize("Test", *args)
 
-    def test_wrong_type_value_check(self):
-        args = self.blank_args[:]
-        args[29] = chr(128)
-        with self.assertRaises(FieldLengthUnsupportedException):
-            self.s.serialize("Test", *args)
-
     def test_hash_name(self):
         name = "test"
         for i in range(1,9):

@@ -165,6 +165,20 @@ class Serializer:
         """
         return struct.DESCRIPTOR.fields_by_name[field].GetOptions() if hasattr(struct, "DESCRIPTOR") else None
 
+    def _process_value(self, value):
+        """Convert a value to a value which protobuf supports.
+            Currently only binary strings need special treat-
+            ment.
+
+            :param value: the value to convert
+        """
+        if isinstance(value, str):
+            try:
+                value.decode('ascii')
+            except UnicodeDecodeError:
+                return unicode(''.join([unichr(ord(c)) for c in value]))
+        return value
+
     def _map_onto(self, field_struct, value, options=None):
         """Set a field in a Protocol Buffers struct
             to a certain value.
@@ -193,7 +207,7 @@ class Serializer:
                 else:
                     # Scalar lists will always
                     # need to be set by us
-                    field_struct.append(sub)
+                    field_struct.append(self._process_value(sub))
                     if options:
                         self._check_field_length(field_struct, sub, options)
         elif isinstance(value, dict):
@@ -218,7 +232,7 @@ class Serializer:
                 if r:
                     self._checked_set(field_struct, fields[i].name, r[0])
         else:
-            return [unicode(value) if isinstance(value, unicode) else value, ]
+            return [self._process_value(value), ]
 
     def serialize(self, name, *args, **kwargs):
         """Serialize a message of a certain type.
