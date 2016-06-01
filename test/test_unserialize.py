@@ -133,6 +133,21 @@ class TestUnserialize(unittest.TestCase):
 
         self.assertEqual(self.calls, 1)
 
+    def test_return_value(self):
+        def f(obj):
+            self.assertTrue(obj.IsInitialized())
+            for (_, value) in obj.ListFields():
+                self.assertIn(value, self.args)
+            self.calls += 1
+            self.expected = obj
+
+        self.s.add_handler("Test", f)
+        rval = self.s.unserialize(self.enc)
+
+        self.assertEqual(self.calls, 1)
+        self.assertEqual(rval[0][1], self.expected)
+
+
     def test_keep_remainder(self):
         def f(obj):
             self.assertTrue(obj.IsInitialized())

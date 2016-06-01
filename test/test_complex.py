@@ -64,5 +64,19 @@ class TestSerialize(unittest.TestCase):
         with self.assertRaises(FieldTooLongException):
             self.s.serialize("TestComplex", [("", ["longerthantwentycharacters"])])
 
+    def test_unicode_strings(self):
+        enc = self.s.serialize("TestComplex", [(unichr(8224), ["m1", "m2"])])
+
+        def f(obj):
+            self.assertTrue(obj.IsInitialized())
+            self.assertEqual(obj.nesteds[0].normal, unichr(8224))
+            self.assertEqual(obj.nesteds[0].multiple[0], "m1")
+            self.assertEqual(obj.nesteds[0].multiple[1], "m2")
+            self.calls += 1
+
+        self.s.add_handler("TestComplex", f)
+        self.s.unserialize(enc)
+        self.assertEqual(self.calls, 1)
+
 if __name__ == '__main__':
     unittest.main()
