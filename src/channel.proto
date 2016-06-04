@@ -36,6 +36,8 @@ message Modification {
 	required int64 timestamp = 3;
 	required string mid = 4 [(length) = 20];
 	required int64 globaltime = 5;
+	required string prevmid = 6 [(length) = 20];
+	required int64 prevglobaltime = 7;
 }
 
 message PlaylistTorrent {
