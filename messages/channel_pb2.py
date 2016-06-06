@@ -19,7 +19,7 @@ import defaults_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='channel.proto',
   package='',
-  serialized_pb=_b('\n\rchannel.proto\x1a\x0e\x64\x65\x66\x61ults.proto\"8\n\x07\x43hannel\x12\x12\n\x04name\x18\x01 \x02(\tB\x04\xc8>\xff\x01\x12\x19\n\x0b\x64\x65scription\x18\x02 \x02(\tB\x04\xc8>\xff\x07\"\x97\x01\n\x07Torrent\x12\x15\n\x08infohash\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x11\n\ttimestamp\x18\x02 \x02(\x04\x12\x0c\n\x04name\x18\x03 \x02(\t\x12\x1c\n\x05\x66iles\x18\x04 \x03(\x0b\x32\r.Torrent.File\x12\x10\n\x08trackers\x18\x05 \x03(\t\x1a$\n\x04\x46ile\x12\x0c\n\x04path\x18\x01 \x02(\t\x12\x0e\n\x06length\x18\x02 \x02(\x03\"\x82\x02\n\x07\x43omment\x12\x0c\n\x04text\x18\x01 \x02(\t\x12\x11\n\ttimestamp\x18\x02 \x02(\x03\x12\x1b\n\x0eplaylistpacket\x18\x03 \x02(\tB\x03\xc8>\x14\x12\x15\n\x08infohash\x18\x04 \x02(\tB\x03\xc8>\x14\x12\x17\n\nreplytomid\x18\x05 \x02(\tB\x03\xc8>\x14\x12\x19\n\x11replytoglobaltime\x18\x06 \x02(\x03\x12\x1a\n\rreplyaftermid\x18\x07 \x02(\tB\x03\xc8>\x14\x12\x1c\n\x14replyafterglobaltime\x18\x08 \x02(\x03\x12\x18\n\x0bplaylistmid\x18\t \x02(\tB\x03\xc8>\x14\x12\x1a\n\x12playlistglobaltime\x18\n \x02(\x03\"\xb0\x01\n\x0cModification\x12\x18\n\x10modificationtype\x18\x01 \x02(\t\x12\x1f\n\x11modificationvalue\x18\x02 \x02(\tB\x04\xc8>\xff\x07\x12\x11\n\ttimestamp\x18\x03 \x02(\x03\x12\x10\n\x03mid\x18\x04 \x02(\tB\x03\xc8>\x14\x12\x12\n\nglobaltime\x18\x05 \x02(\x03\x12\x14\n\x07prevmid\x18\x06 \x01(\tB\x03\xc8>\x14\x12\x16\n\x0eprevglobaltime\x18\x07 \x01(\x03\"N\n\x0fPlaylistTorrent\x12\x15\n\x08infohash\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x10\n\x03mid\x18\x02 \x02(\tB\x03\xc8>\x14\x12\x12\n\nglobaltime\x18\x03 \x02(\x04\")\n\x0eMissingChannel\x12\x17\n\x0fincludeSnapshot\x18\x01 \x02(\x08\"u\n\nModeration\x12\x12\n\x04text\x18\x01 \x02(\tB\x04\xc8>\xff\x07\x12\x11\n\ttimestamp\x18\x02 \x02(\x03\x12\x10\n\x08severity\x18\x03 \x02(\x03\x12\x15\n\x08\x63\x61usemid\x18\x04 \x02(\tB\x03\xc8>\x14\x12\x17\n\x0f\x63\x61useglobaltime\x18\x05 \x02(\x03\"J\n\x0bMarkTorrent\x12\x15\n\x08infohash\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x11\n\ttimestamp\x18\x02 \x02(\x03\x12\x11\n\x04type\x18\x03 \x02(\tB\x03\xc8>\x18\"9\n\x08Playlist\x12\x12\n\x04name\x18\x01 \x02(\tB\x04\xc8>\xff\x01\x12\x19\n\x0b\x64\x65scription\x18\x02 \x02(\tB\x04\xc8>\xff\x07')
+  serialized_pb=_b('\n\rchannel.proto\x1a\x0e\x64\x65\x66\x61ults.proto\"8\n\x07\x43hannel\x12\x12\n\x04name\x18\x01 \x02(\tB\x04\xc8>\xff\x01\x12\x19\n\x0b\x64\x65scription\x18\x02 \x02(\tB\x04\xc8>\xff\x07\"\x94\x01\n\x07Torrent\x12\x15\n\x08infohash\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x11\n\ttimestamp\x18\x02 \x02(\x04\x12\x0c\n\x04name\x18\x03 \x02(\t\x12\x1c\n\x05\x66iles\x18\x04 \x03(\x0b\x32\r.Torrent.File\x12\x10\n\x08trackers\x18\x05 \x03(\t\x1a!\n\x04\x46ile\x12\x0c\n\x04path\x18\x01 \x02(\t\x12\x0b\n\x03len\x18\x02 \x02(\x03\"\x82\x02\n\x07\x43omment\x12\x0c\n\x04text\x18\x01 \x02(\t\x12\x11\n\ttimestamp\x18\x02 \x02(\x03\x12\x1b\n\x0eplaylistpacket\x18\x03 \x02(\tB\x03\xc8>\x14\x12\x15\n\x08infohash\x18\x04 \x02(\tB\x03\xc8>\x14\x12\x17\n\nreplytomid\x18\x05 \x02(\tB\x03\xc8>\x14\x12\x19\n\x11replytoglobaltime\x18\x06 \x02(\x03\x12\x1a\n\rreplyaftermid\x18\x07 \x02(\tB\x03\xc8>\x14\x12\x1c\n\x14replyafterglobaltime\x18\x08 \x02(\x03\x12\x18\n\x0bplaylistmid\x18\t \x02(\tB\x03\xc8>\x14\x12\x1a\n\x12playlistglobaltime\x18\n \x02(\x03\"\xb0\x01\n\x0cModification\x12\x18\n\x10modificationtype\x18\x01 \x02(\t\x12\x1f\n\x11modificationvalue\x18\x02 \x02(\tB\x04\xc8>\xff\x07\x12\x11\n\ttimestamp\x18\x03 \x02(\x03\x12\x10\n\x03mid\x18\x04 \x02(\tB\x03\xc8>\x14\x12\x12\n\nglobaltime\x18\x05 \x02(\x03\x12\x14\n\x07prevmid\x18\x06 \x01(\tB\x03\xc8>\x14\x12\x16\n\x0eprevglobaltime\x18\x07 \x01(\x03\"N\n\x0fPlaylistTorrent\x12\x15\n\x08infohash\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x10\n\x03mid\x18\x02 \x02(\tB\x03\xc8>\x14\x12\x12\n\nglobaltime\x18\x03 \x02(\x04\")\n\x0eMissingChannel\x12\x17\n\x0fincludeSnapshot\x18\x01 \x02(\x08\"u\n\nModeration\x12\x12\n\x04text\x18\x01 \x02(\tB\x04\xc8>\xff\x07\x12\x11\n\ttimestamp\x18\x02 \x02(\x03\x12\x10\n\x08severity\x18\x03 \x02(\x03\x12\x15\n\x08\x63\x61usemid\x18\x04 \x02(\tB\x03\xc8>\x14\x12\x17\n\x0f\x63\x61useglobaltime\x18\x05 \x02(\x03\"J\n\x0bMarkTorrent\x12\x15\n\x08infohash\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x11\n\ttimestamp\x18\x02 \x02(\x03\x12\x11\n\x04type\x18\x03 \x02(\tB\x03\xc8>\x18\"9\n\x08Playlist\x12\x12\n\x04name\x18\x01 \x02(\tB\x04\xc8>\xff\x01\x12\x19\n\x0b\x64\x65scription\x18\x02 \x02(\tB\x04\xc8>\xff\x07')
   ,
   dependencies=[defaults_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -79,7 +79,7 @@ _TORRENT_FILE = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='length', full_name='Torrent.File.length', index=1,
+      name='len', full_name='Torrent.File.len', index=1,
       number=2, type=3, cpp_type=2, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -97,7 +97,7 @@ _TORRENT_FILE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=207,
-  serialized_end=243,
+  serialized_end=240,
 )
 
 _TORRENT = _descriptor.Descriptor(
@@ -154,7 +154,7 @@ _TORRENT = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=92,
-  serialized_end=243,
+  serialized_end=240,
 )
 
 
@@ -246,8 +246,8 @@ _COMMENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=246,
-  serialized_end=504,
+  serialized_start=243,
+  serialized_end=501,
 )
 
 
@@ -318,8 +318,8 @@ _MODIFICATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=507,
-  serialized_end=683,
+  serialized_start=504,
+  serialized_end=680,
 )
 
 
@@ -362,8 +362,8 @@ _PLAYLISTTORRENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=685,
-  serialized_end=763,
+  serialized_start=682,
+  serialized_end=760,
 )
 
 
@@ -392,8 +392,8 @@ _MISSINGCHANNEL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=765,
-  serialized_end=806,
+  serialized_start=762,
+  serialized_end=803,
 )
 
 
@@ -450,8 +450,8 @@ _MODERATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=808,
-  serialized_end=925,
+  serialized_start=805,
+  serialized_end=922,
 )
 
 
@@ -494,8 +494,8 @@ _MARKTORRENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=927,
-  serialized_end=1001,
+  serialized_start=924,
+  serialized_end=998,
 )
 
 
@@ -531,8 +531,8 @@ _PLAYLIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1003,
-  serialized_end=1060,
+  serialized_start=1000,
+  serialized_end=1057,
 )
 
 _TORRENT_FILE.containing_type = _TORRENT
