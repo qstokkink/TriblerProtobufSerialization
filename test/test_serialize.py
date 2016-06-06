@@ -155,9 +155,9 @@ class TestSerialize(unittest.TestCase):
         filter.called = False
         logging.getLogger().addFilter(filter)
 
-        self.assertIn("test_pb2Test", self.s.messages)
+        self.assertIn("'test_pb2Test'", self.s.messages)
         self.s.load_definitions()
-        self.assertIn("test_pb2Test", self.s.messages)
+        self.assertIn("'test_pb2Test'", self.s.messages)
         self.assertTrue(filter.called)
 
         logging.getLogger().removeFilter(filter)

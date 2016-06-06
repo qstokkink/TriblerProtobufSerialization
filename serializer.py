@@ -51,11 +51,11 @@ class Serializer:
             prefix = module.__name__.split('.')[-1]
             for message_name in names:
                 hashed_name = self._hash_name(prefix + message_name)
-                if hashed_name in self.messages:
+                if repr(hashed_name) in self.messages:
                     logging.warning("Serializer read duplicate message!" +
                                         "Overwriting definition of " + message_name)
-                self.messages[hashed_name] = getattr(module, message_name)
-                self.message_hashes[hashed_name] = message_name
+                self.messages[repr(hashed_name)] = getattr(module, message_name)
+                self.message_hashes[repr(hashed_name)] = message_name
                 self.message_rhashes[message_name] = hashed_name
 
     def add_handler(self, name, callback):
@@ -268,7 +268,7 @@ class Serializer:
         """ 
         if '.' in name:
             unspec = self._unspecify_name(name)
-            if not unspec or not (unspec in self.messages):
+            if not unspec or not (repr(unspec) in self.messages):
                 raise UnknownMessageException("Tried to provide serialization for " + 
                                             "unknown message '" + name + "'")
             name = unspec
@@ -277,7 +277,7 @@ class Serializer:
         else:
             raise UnknownMessageException("Tried to provide serialization for " + 
                                             "unknown message '" + name + "'")
-        struct = self.messages[name]()
+        struct = self.messages[repr(name)]()
         index = 0
         for field in struct.DESCRIPTOR.fields:
             # Loop through the fields in order of definition
@@ -307,7 +307,7 @@ class Serializer:
             :param name: the message name/type
             :param message: the actual message object
         """
-        unhashed = self.message_hashes[name]
+        unhashed = self.message_hashes[repr(name)]
         if unhashed in self.handlers:
             for handler in self.handlers[unhashed]:
                 handler(message)
@@ -326,7 +326,7 @@ class Serializer:
         while len(sbuffer) > self.header_size:
             (header, ) = unpack_from(str(self.header_size) + 's', sbuffer)
             header = header.replace('\x00','')
-            if header in self.messages:
+            if repr(header) in self.messages:
                 name = header
                 break
             if not persistent_start:
@@ -387,7 +387,7 @@ class Serializer:
         # The message id is valid
         sbuffer = data[start_skip+self.header_size:]
         initialized, struct, actual_size = self._unserialize_body(sbuffer, 
-                                                        self.messages[name](), 
+                                                        self.messages[repr(name)](), 
                                                         persistent_end)
         if (not initialized) or ((not persistent_end) and (len(sbuffer) != actual_size)):
             # Possible illegal header
@@ -398,7 +398,7 @@ class Serializer:
                 self.remainder = data[start_skip:]
             return
         # Forward the (now valid) struct to the handlers
-        return_list = [(self.message_hashes[name], struct)]
+        return_list = [(self.message_hashes[repr(name)], struct)]
         self._forward_message(name, struct)
         # If we have leftovers, store them
         if start_skip + self.header_size + actual_size < len(data):
