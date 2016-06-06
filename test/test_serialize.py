@@ -104,6 +104,14 @@ class TestSerialize(unittest.TestCase):
         with self.assertRaises(UnknownMessageException):
             self.s.serialize("Unknown")
 
+    def test_unknown_message_explicit(self):
+        with self.assertRaises(UnknownMessageException):
+            self.s.serialize("test.Unknown")
+
+    def test_unknown_message_explicit2(self):
+        with self.assertRaises(UnknownMessageException):
+            self.s.serialize("t.Unknown")
+
     def test_incomplete_definition_empty(self):
         with self.assertRaises(FieldNotDefinedException):
             self.s.serialize("Test")

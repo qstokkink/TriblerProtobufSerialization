@@ -266,14 +266,17 @@ class Serializer:
             :param kwargs: the (remaining) fields of the message by field name
             :returns: the serialization as a binary string 
         """ 
-        if not (name in self.message_rhashes):
+        if '.' in name:
             unspec = self._unspecify_name(name)
             if not unspec or not (unspec in self.messages):
                 raise UnknownMessageException("Tried to provide serialization for " + 
                                             "unknown message '" + name + "'")
             name = unspec
-        else:
+        elif name in self.message_rhashes:
             name = self.message_rhashes[name]
+        else:
+            raise UnknownMessageException("Tried to provide serialization for " + 
+                                            "unknown message '" + name + "'")
         struct = self.messages[name]()
         index = 0
         for field in struct.DESCRIPTOR.fields:
