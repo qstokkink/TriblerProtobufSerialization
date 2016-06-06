@@ -69,10 +69,8 @@ class Serializer:
             self.handlers[name] = []
         self.handlers[name].append(callback)
 
-    def add_package_handler(self, package_name, cls):
-        """Add a handler which handles all messages for a certain package.
-            Callbacks will be performed with cls member function of the name:
-                on_<lowercase message name>()
+    def _fuzzy_module_name_eq(self, module, package_name):
+        """Given a package name, check if it resembles a module.
 
             Accepts packages names as:
                 - Full python class path
@@ -81,15 +79,26 @@ class Serializer:
                 - .proto name
                 - .proto package
 
+            :param module: the python module to check
+            :param package_name: the name to equate
+            :returns: whether name and the module equate
+        """
+        return ((module.__name__ == package_name) or 
+                (module.__name__.replace('_pb2', '') == package_name) or 
+                (module.DESCRIPTOR.name == package_name) or 
+                (module.DESCRIPTOR.name.replace('.proto', '') == package_name) or
+                (module.DESCRIPTOR.package == package_name))
+
+    def add_package_handler(self, package_name, cls):
+        """Add a handler which handles all messages for a certain package.
+            Callbacks will be performed with cls member function of the name:
+                on_<lowercase message name>()
+
             :param package_name: the name of the package of the messages
             :param cls: the callback class
         """
         for module in messages.MESSAGES:
-            if ((module.__name__ == package_name) or 
-                (module.__name__.replace('_pb2', '') == package_name) or 
-                (module.DESCRIPTOR.name == package_name) or 
-                (module.DESCRIPTOR.name.replace('.proto', '') == package_name) or
-                (module.DESCRIPTOR.package == package_name)):
+            if self._fuzzy_module_name_eq(module, package_name):
                 for name in module.DESCRIPTOR.message_types_by_name:
                     self.add_handler(name, getattr(cls, 'on_' + name.lower()))
 
@@ -230,6 +239,25 @@ class Serializer:
         else:
             return [self._process_value(value), ]
 
+    def _unspecify_name(self, name):
+        """In case of overlapping messages a user will want
+            to specify which package to use.
+            For example:
+                'B.A' instead of 'A'
+            when both 'B.A' and 'C.A' exist.
+
+            This function retrieves the reverse hash of
+            otherwise overlapping message names.
+
+            :param: the name to unspecify
+        """
+        unspec = None
+        path = name.split('.')[0]
+        for module in messages.MESSAGES:
+            if self._fuzzy_module_name_eq(module, path):
+                prefix = module.__name__.split('.')[-1]
+                return self._hash_name(prefix + name[len(path)+1:])
+
     def serialize(self, name, *args, **kwargs):
         """Serialize a message of a certain type.
 
@@ -239,10 +267,13 @@ class Serializer:
             :returns: the serialization as a binary string 
         """ 
         if not (name in self.message_rhashes):
-            raise UnknownMessageException("Tried to provide serialization for " + 
+            unspec = self._unspecify_name(name)
+            if not unspec or not (unspec in self.messages):
+                raise UnknownMessageException("Tried to provide serialization for " + 
                                             "unknown message '" + name + "'")
-
-        name = self.message_rhashes[name]
+            name = unspec
+        else:
+            name = self.message_rhashes[name]
         struct = self.messages[name]()
         index = 0
         for field in struct.DESCRIPTOR.fields:

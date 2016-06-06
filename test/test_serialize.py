@@ -68,6 +68,17 @@ class TestSerialize(unittest.TestCase):
         self.s.add_handler("Test", f)
         self.s.unserialize(enc)
 
+    def test_explicit_call(self):
+        enc = self.s.serialize("test.Test", *self.blank_args)
+
+        def f(obj):
+            self.assertTrue(obj.IsInitialized())
+            for (_, value) in obj.ListFields():
+                self.assertIn(value, self.blank_args)
+
+        self.s.add_handler("Test", f)
+        self.s.unserialize(enc)
+
     def test_negative_values(self):
         enc = self.s.serialize("Test", *self.neg_args)
 
