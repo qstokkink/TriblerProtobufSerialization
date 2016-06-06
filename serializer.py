@@ -41,6 +41,8 @@ class Serializer:
             rem = min(x+length,len(name))-x
             for i in range(rem):
                 hashed = hashed[:i] + chr(ord(name[x + i]) ^ ord(hashed[i])) + hashed[i+1:]
+        if len(hashed) < length:
+            hashed += '\x00' * (length-len(hashed))
         return hashed
 
     def load_definitions(self):
@@ -324,8 +326,7 @@ class Serializer:
         sbuffer = data
         # Skip characters until a valid message id appears
         while len(sbuffer) > self.header_size:
-            (header, ) = unpack_from(str(self.header_size) + 's', sbuffer)
-            header = header.replace('\x00','')
+            header = sbuffer[:self.header_size]
             if repr(header) in self.messages:
                 name = header
                 break

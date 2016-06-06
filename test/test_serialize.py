@@ -144,7 +144,7 @@ class TestSerialize(unittest.TestCase):
         name = "test"
         for i in range(1,9):
             self.assertEqual(len(self.s._hash_name(name, i)),
-                                min(i, len(name)))
+                                i)
 
     def test_reload_definitions(self):
         class T(logging.Filter):
@@ -155,9 +155,9 @@ class TestSerialize(unittest.TestCase):
         filter.called = False
         logging.getLogger().addFilter(filter)
 
-        self.assertIn("'test_pb2Test'", self.s.messages)
+        self.assertIn("'test_pb2Test\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00'", self.s.messages)
         self.s.load_definitions()
-        self.assertIn("'test_pb2Test'", self.s.messages)
+        self.assertIn("'test_pb2Test\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00'", self.s.messages)
         self.assertTrue(filter.called)
 
         logging.getLogger().removeFilter(filter)
