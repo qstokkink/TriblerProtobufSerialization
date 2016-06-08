@@ -10,9 +10,9 @@ message TasteIntroduction {
 message SearchRequest {
     required uint32 identifier = 1 [(length) = 2];
     repeated string keywords = 2;
-    required uint32 bloomfilterfunctions = 3;
-    required string bloomfilterprefix = 4 [(length) = 255];
-    required bytes bloomfilterbytes = 5;
+    optional uint32 bloomfilterfunctions = 3;
+    optional string bloomfilterprefix = 4 [(length) = 255];
+    optional bytes bloomfilterbytes = 5;
 }
 
 message SearchResponse {
