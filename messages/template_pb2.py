@@ -18,8 +18,8 @@ import defaults_pb2
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='template.proto',
-  package='',
-  serialized_pb=_b('\n\x0etemplate.proto\x1a\x0e\x64\x65\x66\x61ults.proto\"\x19\n\x04Text\x12\x11\n\x04text\x18\x01 \x02(\rB\x03\xc8>\x01')
+  package='template',
+  serialized_pb=_b('\n\x0etemplate.proto\x12\x08template\x1a\x0e\x64\x65\x66\x61ults.proto\"\x19\n\x04Text\x12\x11\n\x04text\x18\x01 \x02(\rB\x03\xc8>\x01')
   ,
   dependencies=[defaults_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -29,13 +29,13 @@ _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 _TEXT = _descriptor.Descriptor(
   name='Text',
-  full_name='Text',
+  full_name='template.Text',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='text', full_name='Text.text', index=0,
+      name='text', full_name='template.Text.text', index=0,
       number=1, type=13, cpp_type=3, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -52,8 +52,8 @@ _TEXT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=34,
-  serialized_end=59,
+  serialized_start=44,
+  serialized_end=69,
 )
 
 DESCRIPTOR.message_types_by_name['Text'] = _TEXT
@@ -61,7 +61,7 @@ DESCRIPTOR.message_types_by_name['Text'] = _TEXT
 Text = _reflection.GeneratedProtocolMessageType('Text', (_message.Message,), dict(
   DESCRIPTOR = _TEXT,
   __module__ = 'template_pb2'
-  # @@protoc_insertion_point(class_scope:Text)
+  # @@protoc_insertion_point(class_scope:template.Text)
   ))
 _sym_db.RegisterMessage(Text)
 

@@ -1,5 +1,7 @@
 import "defaults.proto";
 
+package multichain;
+
 message Signature {
 	required uint32 up = 1;
 	required uint32 down = 2;

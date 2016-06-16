@@ -1,5 +1,7 @@
 import "defaults.proto";
 
+package bartercast4;
+
 message StatsRequest {
 	required int32 statstype = 1;
 }

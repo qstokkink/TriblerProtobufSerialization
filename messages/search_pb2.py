@@ -18,8 +18,8 @@ import defaults_pb2
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='search.proto',
-  package='',
-  serialized_pb=_b('\n\x0csearch.proto\x1a\x0e\x64\x65\x66\x61ults.proto\"\x93\x01\n\x11TasteIntroduction\x12\x16\n\x0enumpreferences\x18\x01 \x02(\r\x12&\n\x19tastebloomfilterfunctions\x18\x02 \x02(\rB\x03\xc8>\x01\x12$\n\x16tastebloomfilterprefix\x18\x03 \x02(\tB\x04\xc8>\xff\x01\x12\x18\n\x10tastebloomfilter\x18\x04 \x02(\x0c\"\x93\x01\n\rSearchRequest\x12\x17\n\nidentifier\x18\x01 \x02(\rB\x03\xc8>\x02\x12\x10\n\x08keywords\x18\x02 \x03(\t\x12\x1c\n\x14\x62loomfilterfunctions\x18\x03 \x01(\r\x12\x1f\n\x11\x62loomfilterprefix\x18\x04 \x01(\tB\x04\xc8>\xff\x01\x12\x18\n\x10\x62loomfilterbytes\x18\x05 \x01(\x0c\"\x86\x02\n\x0eSearchResponse\x12\x17\n\nidentifier\x18\x01 \x02(\rB\x03\xc8>\x02\x12\'\n\x07results\x18\x02 \x03(\x0b\x32\x16.SearchResponse.Result\x1a\xb1\x01\n\x06Result\x12\x15\n\x08infohash\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x11\n\tswarmname\x18\x02 \x02(\t\x12\x0b\n\x03len\x18\x03 \x02(\x03\x12\x0f\n\x07nrfiles\x18\x04 \x02(\x05\x12\x14\n\x0c\x63\x61tegorylist\x18\x05 \x03(\t\x12\x14\n\x0c\x63reationdate\x18\x06 \x02(\x03\x12\x0f\n\x07seeders\x18\x07 \x02(\x05\x12\x10\n\x08leechers\x18\x08 \x02(\x05\x12\x10\n\x03\x63id\x18\t \x01(\tB\x03\xc8>\x14\"q\n\x0eTorrentRequest\x12)\n\x08torrents\x18\x01 \x03(\x0b\x32\x17.TorrentRequest.Torrent\x1a\x34\n\x07Torrent\x12\x10\n\x03\x63id\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x17\n\ninfohashes\x18\x02 \x03(\tB\x03\xc8>\x14\"\xdb\x01\n\x15TorrentCollectRequest\x12\x18\n\x0bindentifier\x18\x01 \x02(\rB\x03\xc8>\x02\x12\x15\n\x08hashtype\x18\x02 \x02(\rB\x03\xc8>\x02\x12\x30\n\x08torrents\x18\x03 \x03(\x0b\x32\x1e.TorrentCollectRequest.Torrent\x1a_\n\x07Torrent\x12\x15\n\x08infohash\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x14\n\x07seeders\x18\x02 \x02(\rB\x03\xc8>\x02\x12\x15\n\x08leechers\x18\x03 \x02(\rB\x03\xc8>\x02\x12\x10\n\x03\x61go\x18\x04 \x02(\rB\x03\xc8>\x02\"\xdd\x01\n\x16TorrentCollectResponse\x12\x18\n\x0bindentifier\x18\x01 \x02(\rB\x03\xc8>\x02\x12\x15\n\x08hashtype\x18\x02 \x02(\rB\x03\xc8>\x02\x12\x31\n\x08torrents\x18\x03 \x03(\x0b\x32\x1f.TorrentCollectResponse.Torrent\x1a_\n\x07Torrent\x12\x15\n\x08infohash\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x14\n\x07seeders\x18\x02 \x02(\rB\x03\xc8>\x02\x12\x15\n\x08leechers\x18\x03 \x02(\rB\x03\xc8>\x02\x12\x10\n\x03\x61go\x18\x04 \x02(\rB\x03\xc8>\x02\"\x97\x01\n\x07Torrent\x12\x15\n\x08infohash\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x11\n\ttimestamp\x18\x02 \x02(\x04\x12\x0c\n\x04name\x18\x03 \x02(\t\x12\x1c\n\x05\x66iles\x18\x04 \x03(\x0b\x32\r.Torrent.File\x12\x10\n\x08trackers\x18\x05 \x03(\t\x1a$\n\x04\x46ile\x12\x0c\n\x04path\x18\x01 \x02(\t\x12\x0e\n\x06length\x18\x02 \x02(\x03')
+  package='search',
+  serialized_pb=_b('\n\x0csearch.proto\x12\x06search\x1a\x0e\x64\x65\x66\x61ults.proto\"\x93\x01\n\x11TasteIntroduction\x12\x16\n\x0enumpreferences\x18\x01 \x02(\r\x12&\n\x19tastebloomfilterfunctions\x18\x02 \x02(\rB\x03\xc8>\x01\x12$\n\x16tastebloomfilterprefix\x18\x03 \x02(\tB\x04\xc8>\xff\x01\x12\x18\n\x10tastebloomfilter\x18\x04 \x02(\x0c\"\x93\x01\n\rSearchRequest\x12\x17\n\nidentifier\x18\x01 \x02(\rB\x03\xc8>\x02\x12\x10\n\x08keywords\x18\x02 \x03(\t\x12\x1c\n\x14\x62loomfilterfunctions\x18\x03 \x01(\r\x12\x1f\n\x11\x62loomfilterprefix\x18\x04 \x01(\tB\x04\xc8>\xff\x01\x12\x18\n\x10\x62loomfilterbytes\x18\x05 \x01(\x0c\"\x8d\x02\n\x0eSearchResponse\x12\x17\n\nidentifier\x18\x01 \x02(\rB\x03\xc8>\x02\x12.\n\x07results\x18\x02 \x03(\x0b\x32\x1d.search.SearchResponse.Result\x1a\xb1\x01\n\x06Result\x12\x15\n\x08infohash\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x11\n\tswarmname\x18\x02 \x02(\t\x12\x0b\n\x03len\x18\x03 \x02(\x03\x12\x0f\n\x07nrfiles\x18\x04 \x02(\x05\x12\x14\n\x0c\x63\x61tegorylist\x18\x05 \x03(\t\x12\x14\n\x0c\x63reationdate\x18\x06 \x02(\x03\x12\x0f\n\x07seeders\x18\x07 \x02(\x05\x12\x10\n\x08leechers\x18\x08 \x02(\x05\x12\x10\n\x03\x63id\x18\t \x01(\tB\x03\xc8>\x14\"x\n\x0eTorrentRequest\x12\x30\n\x08torrents\x18\x01 \x03(\x0b\x32\x1e.search.TorrentRequest.Torrent\x1a\x34\n\x07Torrent\x12\x10\n\x03\x63id\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x17\n\ninfohashes\x18\x02 \x03(\tB\x03\xc8>\x14\"\xe2\x01\n\x15TorrentCollectRequest\x12\x18\n\x0bindentifier\x18\x01 \x02(\rB\x03\xc8>\x02\x12\x15\n\x08hashtype\x18\x02 \x02(\rB\x03\xc8>\x02\x12\x37\n\x08torrents\x18\x03 \x03(\x0b\x32%.search.TorrentCollectRequest.Torrent\x1a_\n\x07Torrent\x12\x15\n\x08infohash\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x14\n\x07seeders\x18\x02 \x02(\rB\x03\xc8>\x02\x12\x15\n\x08leechers\x18\x03 \x02(\rB\x03\xc8>\x02\x12\x10\n\x03\x61go\x18\x04 \x02(\rB\x03\xc8>\x02\"\xe4\x01\n\x16TorrentCollectResponse\x12\x18\n\x0bindentifier\x18\x01 \x02(\rB\x03\xc8>\x02\x12\x15\n\x08hashtype\x18\x02 \x02(\rB\x03\xc8>\x02\x12\x38\n\x08torrents\x18\x03 \x03(\x0b\x32&.search.TorrentCollectResponse.Torrent\x1a_\n\x07Torrent\x12\x15\n\x08infohash\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x14\n\x07seeders\x18\x02 \x02(\rB\x03\xc8>\x02\x12\x15\n\x08leechers\x18\x03 \x02(\rB\x03\xc8>\x02\x12\x10\n\x03\x61go\x18\x04 \x02(\rB\x03\xc8>\x02\"\x9e\x01\n\x07Torrent\x12\x15\n\x08infohash\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x11\n\ttimestamp\x18\x02 \x02(\x04\x12\x0c\n\x04name\x18\x03 \x02(\t\x12#\n\x05\x66iles\x18\x04 \x03(\x0b\x32\x14.search.Torrent.File\x12\x10\n\x08trackers\x18\x05 \x03(\t\x1a$\n\x04\x46ile\x12\x0c\n\x04path\x18\x01 \x02(\t\x12\x0e\n\x06length\x18\x02 \x02(\x03')
   ,
   dependencies=[defaults_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -29,34 +29,34 @@ _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 _TASTEINTRODUCTION = _descriptor.Descriptor(
   name='TasteIntroduction',
-  full_name='TasteIntroduction',
+  full_name='search.TasteIntroduction',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='numpreferences', full_name='TasteIntroduction.numpreferences', index=0,
+      name='numpreferences', full_name='search.TasteIntroduction.numpreferences', index=0,
       number=1, type=13, cpp_type=3, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='tastebloomfilterfunctions', full_name='TasteIntroduction.tastebloomfilterfunctions', index=1,
+      name='tastebloomfilterfunctions', full_name='search.TasteIntroduction.tastebloomfilterfunctions', index=1,
       number=2, type=13, cpp_type=3, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\001'))),
     _descriptor.FieldDescriptor(
-      name='tastebloomfilterprefix', full_name='TasteIntroduction.tastebloomfilterprefix', index=2,
+      name='tastebloomfilterprefix', full_name='search.TasteIntroduction.tastebloomfilterprefix', index=2,
       number=3, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\377\001'))),
     _descriptor.FieldDescriptor(
-      name='tastebloomfilter', full_name='TasteIntroduction.tastebloomfilter', index=3,
+      name='tastebloomfilter', full_name='search.TasteIntroduction.tastebloomfilter', index=3,
       number=4, type=12, cpp_type=9, label=2,
       has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
@@ -73,48 +73,48 @@ _TASTEINTRODUCTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=33,
-  serialized_end=180,
+  serialized_start=41,
+  serialized_end=188,
 )
 
 
 _SEARCHREQUEST = _descriptor.Descriptor(
   name='SearchRequest',
-  full_name='SearchRequest',
+  full_name='search.SearchRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='identifier', full_name='SearchRequest.identifier', index=0,
+      name='identifier', full_name='search.SearchRequest.identifier', index=0,
       number=1, type=13, cpp_type=3, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\002'))),
     _descriptor.FieldDescriptor(
-      name='keywords', full_name='SearchRequest.keywords', index=1,
+      name='keywords', full_name='search.SearchRequest.keywords', index=1,
       number=2, type=9, cpp_type=9, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='bloomfilterfunctions', full_name='SearchRequest.bloomfilterfunctions', index=2,
+      name='bloomfilterfunctions', full_name='search.SearchRequest.bloomfilterfunctions', index=2,
       number=3, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='bloomfilterprefix', full_name='SearchRequest.bloomfilterprefix', index=3,
+      name='bloomfilterprefix', full_name='search.SearchRequest.bloomfilterprefix', index=3,
       number=4, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\377\001'))),
     _descriptor.FieldDescriptor(
-      name='bloomfilterbytes', full_name='SearchRequest.bloomfilterbytes', index=4,
+      name='bloomfilterbytes', full_name='search.SearchRequest.bloomfilterbytes', index=4,
       number=5, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
@@ -131,76 +131,76 @@ _SEARCHREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=183,
-  serialized_end=330,
+  serialized_start=191,
+  serialized_end=338,
 )
 
 
 _SEARCHRESPONSE_RESULT = _descriptor.Descriptor(
   name='Result',
-  full_name='SearchResponse.Result',
+  full_name='search.SearchResponse.Result',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='infohash', full_name='SearchResponse.Result.infohash', index=0,
+      name='infohash', full_name='search.SearchResponse.Result.infohash', index=0,
       number=1, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\024'))),
     _descriptor.FieldDescriptor(
-      name='swarmname', full_name='SearchResponse.Result.swarmname', index=1,
+      name='swarmname', full_name='search.SearchResponse.Result.swarmname', index=1,
       number=2, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='len', full_name='SearchResponse.Result.len', index=2,
+      name='len', full_name='search.SearchResponse.Result.len', index=2,
       number=3, type=3, cpp_type=2, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='nrfiles', full_name='SearchResponse.Result.nrfiles', index=3,
+      name='nrfiles', full_name='search.SearchResponse.Result.nrfiles', index=3,
       number=4, type=5, cpp_type=1, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='categorylist', full_name='SearchResponse.Result.categorylist', index=4,
+      name='categorylist', full_name='search.SearchResponse.Result.categorylist', index=4,
       number=5, type=9, cpp_type=9, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='creationdate', full_name='SearchResponse.Result.creationdate', index=5,
+      name='creationdate', full_name='search.SearchResponse.Result.creationdate', index=5,
       number=6, type=3, cpp_type=2, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='seeders', full_name='SearchResponse.Result.seeders', index=6,
+      name='seeders', full_name='search.SearchResponse.Result.seeders', index=6,
       number=7, type=5, cpp_type=1, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='leechers', full_name='SearchResponse.Result.leechers', index=7,
+      name='leechers', full_name='search.SearchResponse.Result.leechers', index=7,
       number=8, type=5, cpp_type=1, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='cid', full_name='SearchResponse.Result.cid', index=8,
+      name='cid', full_name='search.SearchResponse.Result.cid', index=8,
       number=9, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -217,26 +217,26 @@ _SEARCHRESPONSE_RESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=418,
-  serialized_end=595,
+  serialized_start=433,
+  serialized_end=610,
 )
 
 _SEARCHRESPONSE = _descriptor.Descriptor(
   name='SearchResponse',
-  full_name='SearchResponse',
+  full_name='search.SearchResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='identifier', full_name='SearchResponse.identifier', index=0,
+      name='identifier', full_name='search.SearchResponse.identifier', index=0,
       number=1, type=13, cpp_type=3, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\002'))),
     _descriptor.FieldDescriptor(
-      name='results', full_name='SearchResponse.results', index=1,
+      name='results', full_name='search.SearchResponse.results', index=1,
       number=2, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -253,27 +253,27 @@ _SEARCHRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=333,
-  serialized_end=595,
+  serialized_start=341,
+  serialized_end=610,
 )
 
 
 _TORRENTREQUEST_TORRENT = _descriptor.Descriptor(
   name='Torrent',
-  full_name='TorrentRequest.Torrent',
+  full_name='search.TorrentRequest.Torrent',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='cid', full_name='TorrentRequest.Torrent.cid', index=0,
+      name='cid', full_name='search.TorrentRequest.Torrent.cid', index=0,
       number=1, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\024'))),
     _descriptor.FieldDescriptor(
-      name='infohashes', full_name='TorrentRequest.Torrent.infohashes', index=1,
+      name='infohashes', full_name='search.TorrentRequest.Torrent.infohashes', index=1,
       number=2, type=9, cpp_type=9, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -290,19 +290,19 @@ _TORRENTREQUEST_TORRENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=658,
-  serialized_end=710,
+  serialized_start=680,
+  serialized_end=732,
 )
 
 _TORRENTREQUEST = _descriptor.Descriptor(
   name='TorrentRequest',
-  full_name='TorrentRequest',
+  full_name='search.TorrentRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='torrents', full_name='TorrentRequest.torrents', index=0,
+      name='torrents', full_name='search.TorrentRequest.torrents', index=0,
       number=1, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -319,41 +319,41 @@ _TORRENTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=597,
-  serialized_end=710,
+  serialized_start=612,
+  serialized_end=732,
 )
 
 
 _TORRENTCOLLECTREQUEST_TORRENT = _descriptor.Descriptor(
   name='Torrent',
-  full_name='TorrentCollectRequest.Torrent',
+  full_name='search.TorrentCollectRequest.Torrent',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='infohash', full_name='TorrentCollectRequest.Torrent.infohash', index=0,
+      name='infohash', full_name='search.TorrentCollectRequest.Torrent.infohash', index=0,
       number=1, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\024'))),
     _descriptor.FieldDescriptor(
-      name='seeders', full_name='TorrentCollectRequest.Torrent.seeders', index=1,
+      name='seeders', full_name='search.TorrentCollectRequest.Torrent.seeders', index=1,
       number=2, type=13, cpp_type=3, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\002'))),
     _descriptor.FieldDescriptor(
-      name='leechers', full_name='TorrentCollectRequest.Torrent.leechers', index=2,
+      name='leechers', full_name='search.TorrentCollectRequest.Torrent.leechers', index=2,
       number=3, type=13, cpp_type=3, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\002'))),
     _descriptor.FieldDescriptor(
-      name='ago', full_name='TorrentCollectRequest.Torrent.ago', index=3,
+      name='ago', full_name='search.TorrentCollectRequest.Torrent.ago', index=3,
       number=4, type=13, cpp_type=3, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -370,33 +370,33 @@ _TORRENTCOLLECTREQUEST_TORRENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=837,
-  serialized_end=932,
+  serialized_start=866,
+  serialized_end=961,
 )
 
 _TORRENTCOLLECTREQUEST = _descriptor.Descriptor(
   name='TorrentCollectRequest',
-  full_name='TorrentCollectRequest',
+  full_name='search.TorrentCollectRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='indentifier', full_name='TorrentCollectRequest.indentifier', index=0,
+      name='indentifier', full_name='search.TorrentCollectRequest.indentifier', index=0,
       number=1, type=13, cpp_type=3, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\002'))),
     _descriptor.FieldDescriptor(
-      name='hashtype', full_name='TorrentCollectRequest.hashtype', index=1,
+      name='hashtype', full_name='search.TorrentCollectRequest.hashtype', index=1,
       number=2, type=13, cpp_type=3, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\002'))),
     _descriptor.FieldDescriptor(
-      name='torrents', full_name='TorrentCollectRequest.torrents', index=2,
+      name='torrents', full_name='search.TorrentCollectRequest.torrents', index=2,
       number=3, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -413,41 +413,41 @@ _TORRENTCOLLECTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=713,
-  serialized_end=932,
+  serialized_start=735,
+  serialized_end=961,
 )
 
 
 _TORRENTCOLLECTRESPONSE_TORRENT = _descriptor.Descriptor(
   name='Torrent',
-  full_name='TorrentCollectResponse.Torrent',
+  full_name='search.TorrentCollectResponse.Torrent',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='infohash', full_name='TorrentCollectResponse.Torrent.infohash', index=0,
+      name='infohash', full_name='search.TorrentCollectResponse.Torrent.infohash', index=0,
       number=1, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\024'))),
     _descriptor.FieldDescriptor(
-      name='seeders', full_name='TorrentCollectResponse.Torrent.seeders', index=1,
+      name='seeders', full_name='search.TorrentCollectResponse.Torrent.seeders', index=1,
       number=2, type=13, cpp_type=3, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\002'))),
     _descriptor.FieldDescriptor(
-      name='leechers', full_name='TorrentCollectResponse.Torrent.leechers', index=2,
+      name='leechers', full_name='search.TorrentCollectResponse.Torrent.leechers', index=2,
       number=3, type=13, cpp_type=3, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\002'))),
     _descriptor.FieldDescriptor(
-      name='ago', full_name='TorrentCollectResponse.Torrent.ago', index=3,
+      name='ago', full_name='search.TorrentCollectResponse.Torrent.ago', index=3,
       number=4, type=13, cpp_type=3, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -464,33 +464,33 @@ _TORRENTCOLLECTRESPONSE_TORRENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=837,
-  serialized_end=932,
+  serialized_start=866,
+  serialized_end=961,
 )
 
 _TORRENTCOLLECTRESPONSE = _descriptor.Descriptor(
   name='TorrentCollectResponse',
-  full_name='TorrentCollectResponse',
+  full_name='search.TorrentCollectResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='indentifier', full_name='TorrentCollectResponse.indentifier', index=0,
+      name='indentifier', full_name='search.TorrentCollectResponse.indentifier', index=0,
       number=1, type=13, cpp_type=3, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\002'))),
     _descriptor.FieldDescriptor(
-      name='hashtype', full_name='TorrentCollectResponse.hashtype', index=1,
+      name='hashtype', full_name='search.TorrentCollectResponse.hashtype', index=1,
       number=2, type=13, cpp_type=3, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\002'))),
     _descriptor.FieldDescriptor(
-      name='torrents', full_name='TorrentCollectResponse.torrents', index=2,
+      name='torrents', full_name='search.TorrentCollectResponse.torrents', index=2,
       number=3, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -507,27 +507,27 @@ _TORRENTCOLLECTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=935,
-  serialized_end=1156,
+  serialized_start=964,
+  serialized_end=1192,
 )
 
 
 _TORRENT_FILE = _descriptor.Descriptor(
   name='File',
-  full_name='Torrent.File',
+  full_name='search.Torrent.File',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='path', full_name='Torrent.File.path', index=0,
+      name='path', full_name='search.Torrent.File.path', index=0,
       number=1, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='length', full_name='Torrent.File.length', index=1,
+      name='length', full_name='search.Torrent.File.length', index=1,
       number=2, type=3, cpp_type=2, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -544,47 +544,47 @@ _TORRENT_FILE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1274,
-  serialized_end=1310,
+  serialized_start=1317,
+  serialized_end=1353,
 )
 
 _TORRENT = _descriptor.Descriptor(
   name='Torrent',
-  full_name='Torrent',
+  full_name='search.Torrent',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='infohash', full_name='Torrent.infohash', index=0,
+      name='infohash', full_name='search.Torrent.infohash', index=0,
       number=1, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\024'))),
     _descriptor.FieldDescriptor(
-      name='timestamp', full_name='Torrent.timestamp', index=1,
+      name='timestamp', full_name='search.Torrent.timestamp', index=1,
       number=2, type=4, cpp_type=4, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='name', full_name='Torrent.name', index=2,
+      name='name', full_name='search.Torrent.name', index=2,
       number=3, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='files', full_name='Torrent.files', index=3,
+      name='files', full_name='search.Torrent.files', index=3,
       number=4, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='trackers', full_name='Torrent.trackers', index=4,
+      name='trackers', full_name='search.Torrent.trackers', index=4,
       number=5, type=9, cpp_type=9, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -601,8 +601,8 @@ _TORRENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1159,
-  serialized_end=1310,
+  serialized_start=1195,
+  serialized_end=1353,
 )
 
 _SEARCHRESPONSE_RESULT.containing_type = _SEARCHRESPONSE
@@ -626,14 +626,14 @@ DESCRIPTOR.message_types_by_name['Torrent'] = _TORRENT
 TasteIntroduction = _reflection.GeneratedProtocolMessageType('TasteIntroduction', (_message.Message,), dict(
   DESCRIPTOR = _TASTEINTRODUCTION,
   __module__ = 'search_pb2'
-  # @@protoc_insertion_point(class_scope:TasteIntroduction)
+  # @@protoc_insertion_point(class_scope:search.TasteIntroduction)
   ))
 _sym_db.RegisterMessage(TasteIntroduction)
 
 SearchRequest = _reflection.GeneratedProtocolMessageType('SearchRequest', (_message.Message,), dict(
   DESCRIPTOR = _SEARCHREQUEST,
   __module__ = 'search_pb2'
-  # @@protoc_insertion_point(class_scope:SearchRequest)
+  # @@protoc_insertion_point(class_scope:search.SearchRequest)
   ))
 _sym_db.RegisterMessage(SearchRequest)
 
@@ -642,12 +642,12 @@ SearchResponse = _reflection.GeneratedProtocolMessageType('SearchResponse', (_me
   Result = _reflection.GeneratedProtocolMessageType('Result', (_message.Message,), dict(
     DESCRIPTOR = _SEARCHRESPONSE_RESULT,
     __module__ = 'search_pb2'
-    # @@protoc_insertion_point(class_scope:SearchResponse.Result)
+    # @@protoc_insertion_point(class_scope:search.SearchResponse.Result)
     ))
   ,
   DESCRIPTOR = _SEARCHRESPONSE,
   __module__ = 'search_pb2'
-  # @@protoc_insertion_point(class_scope:SearchResponse)
+  # @@protoc_insertion_point(class_scope:search.SearchResponse)
   ))
 _sym_db.RegisterMessage(SearchResponse)
 _sym_db.RegisterMessage(SearchResponse.Result)
@@ -657,12 +657,12 @@ TorrentRequest = _reflection.GeneratedProtocolMessageType('TorrentRequest', (_me
   Torrent = _reflection.GeneratedProtocolMessageType('Torrent', (_message.Message,), dict(
     DESCRIPTOR = _TORRENTREQUEST_TORRENT,
     __module__ = 'search_pb2'
-    # @@protoc_insertion_point(class_scope:TorrentRequest.Torrent)
+    # @@protoc_insertion_point(class_scope:search.TorrentRequest.Torrent)
     ))
   ,
   DESCRIPTOR = _TORRENTREQUEST,
   __module__ = 'search_pb2'
-  # @@protoc_insertion_point(class_scope:TorrentRequest)
+  # @@protoc_insertion_point(class_scope:search.TorrentRequest)
   ))
 _sym_db.RegisterMessage(TorrentRequest)
 _sym_db.RegisterMessage(TorrentRequest.Torrent)
@@ -672,12 +672,12 @@ TorrentCollectRequest = _reflection.GeneratedProtocolMessageType('TorrentCollect
   Torrent = _reflection.GeneratedProtocolMessageType('Torrent', (_message.Message,), dict(
     DESCRIPTOR = _TORRENTCOLLECTREQUEST_TORRENT,
     __module__ = 'search_pb2'
-    # @@protoc_insertion_point(class_scope:TorrentCollectRequest.Torrent)
+    # @@protoc_insertion_point(class_scope:search.TorrentCollectRequest.Torrent)
     ))
   ,
   DESCRIPTOR = _TORRENTCOLLECTREQUEST,
   __module__ = 'search_pb2'
-  # @@protoc_insertion_point(class_scope:TorrentCollectRequest)
+  # @@protoc_insertion_point(class_scope:search.TorrentCollectRequest)
   ))
 _sym_db.RegisterMessage(TorrentCollectRequest)
 _sym_db.RegisterMessage(TorrentCollectRequest.Torrent)
@@ -687,12 +687,12 @@ TorrentCollectResponse = _reflection.GeneratedProtocolMessageType('TorrentCollec
   Torrent = _reflection.GeneratedProtocolMessageType('Torrent', (_message.Message,), dict(
     DESCRIPTOR = _TORRENTCOLLECTRESPONSE_TORRENT,
     __module__ = 'search_pb2'
-    # @@protoc_insertion_point(class_scope:TorrentCollectResponse.Torrent)
+    # @@protoc_insertion_point(class_scope:search.TorrentCollectResponse.Torrent)
     ))
   ,
   DESCRIPTOR = _TORRENTCOLLECTRESPONSE,
   __module__ = 'search_pb2'
-  # @@protoc_insertion_point(class_scope:TorrentCollectResponse)
+  # @@protoc_insertion_point(class_scope:search.TorrentCollectResponse)
   ))
 _sym_db.RegisterMessage(TorrentCollectResponse)
 _sym_db.RegisterMessage(TorrentCollectResponse.Torrent)
@@ -702,12 +702,12 @@ Torrent = _reflection.GeneratedProtocolMessageType('Torrent', (_message.Message,
   File = _reflection.GeneratedProtocolMessageType('File', (_message.Message,), dict(
     DESCRIPTOR = _TORRENT_FILE,
     __module__ = 'search_pb2'
-    # @@protoc_insertion_point(class_scope:Torrent.File)
+    # @@protoc_insertion_point(class_scope:search.Torrent.File)
     ))
   ,
   DESCRIPTOR = _TORRENT,
   __module__ = 'search_pb2'
-  # @@protoc_insertion_point(class_scope:Torrent)
+  # @@protoc_insertion_point(class_scope:search.Torrent)
   ))
 _sym_db.RegisterMessage(Torrent)
 _sym_db.RegisterMessage(Torrent.File)

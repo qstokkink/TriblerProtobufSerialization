@@ -18,8 +18,8 @@ import defaults_pb2
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='bartercast4.proto',
-  package='',
-  serialized_pb=_b('\n\x11\x62\x61rtercast4.proto\x1a\x0e\x64\x65\x66\x61ults.proto\"!\n\x0cStatsRequest\x12\x11\n\tstatstype\x18\x01 \x02(\x05\"z\n\rStatsResponse\x12\x11\n\tstatstype\x18\x01 \x02(\x05\x12&\n\x07records\x18\x02 \x03(\x0b\x32\x15.StatsResponse.Record\x1a.\n\x06Record\x12\x15\n\x06peerid\x18\x01 \x02(\tB\x05\xc8>\xff\xff\x03\x12\r\n\x05value\x18\x02 \x02(\x05')
+  package='bartercast4',
+  serialized_pb=_b('\n\x11\x62\x61rtercast4.proto\x12\x0b\x62\x61rtercast4\x1a\x0e\x64\x65\x66\x61ults.proto\"!\n\x0cStatsRequest\x12\x11\n\tstatstype\x18\x01 \x02(\x05\"\x86\x01\n\rStatsResponse\x12\x11\n\tstatstype\x18\x01 \x02(\x05\x12\x32\n\x07records\x18\x02 \x03(\x0b\x32!.bartercast4.StatsResponse.Record\x1a.\n\x06Record\x12\x15\n\x06peerid\x18\x01 \x02(\tB\x05\xc8>\xff\xff\x03\x12\r\n\x05value\x18\x02 \x02(\x05')
   ,
   dependencies=[defaults_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -29,13 +29,13 @@ _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 _STATSREQUEST = _descriptor.Descriptor(
   name='StatsRequest',
-  full_name='StatsRequest',
+  full_name='bartercast4.StatsRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='statstype', full_name='StatsRequest.statstype', index=0,
+      name='statstype', full_name='bartercast4.StatsRequest.statstype', index=0,
       number=1, type=5, cpp_type=1, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -52,27 +52,27 @@ _STATSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=37,
-  serialized_end=70,
+  serialized_start=50,
+  serialized_end=83,
 )
 
 
 _STATSRESPONSE_RECORD = _descriptor.Descriptor(
   name='Record',
-  full_name='StatsResponse.Record',
+  full_name='bartercast4.StatsResponse.Record',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='peerid', full_name='StatsResponse.Record.peerid', index=0,
+      name='peerid', full_name='bartercast4.StatsResponse.Record.peerid', index=0,
       number=1, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\377\377\003'))),
     _descriptor.FieldDescriptor(
-      name='value', full_name='StatsResponse.Record.value', index=1,
+      name='value', full_name='bartercast4.StatsResponse.Record.value', index=1,
       number=2, type=5, cpp_type=1, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -89,26 +89,26 @@ _STATSRESPONSE_RECORD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=148,
-  serialized_end=194,
+  serialized_start=174,
+  serialized_end=220,
 )
 
 _STATSRESPONSE = _descriptor.Descriptor(
   name='StatsResponse',
-  full_name='StatsResponse',
+  full_name='bartercast4.StatsResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='statstype', full_name='StatsResponse.statstype', index=0,
+      name='statstype', full_name='bartercast4.StatsResponse.statstype', index=0,
       number=1, type=5, cpp_type=1, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='records', full_name='StatsResponse.records', index=1,
+      name='records', full_name='bartercast4.StatsResponse.records', index=1,
       number=2, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -125,8 +125,8 @@ _STATSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=72,
-  serialized_end=194,
+  serialized_start=86,
+  serialized_end=220,
 )
 
 _STATSRESPONSE_RECORD.containing_type = _STATSRESPONSE
@@ -137,7 +137,7 @@ DESCRIPTOR.message_types_by_name['StatsResponse'] = _STATSRESPONSE
 StatsRequest = _reflection.GeneratedProtocolMessageType('StatsRequest', (_message.Message,), dict(
   DESCRIPTOR = _STATSREQUEST,
   __module__ = 'bartercast4_pb2'
-  # @@protoc_insertion_point(class_scope:StatsRequest)
+  # @@protoc_insertion_point(class_scope:bartercast4.StatsRequest)
   ))
 _sym_db.RegisterMessage(StatsRequest)
 
@@ -146,12 +146,12 @@ StatsResponse = _reflection.GeneratedProtocolMessageType('StatsResponse', (_mess
   Record = _reflection.GeneratedProtocolMessageType('Record', (_message.Message,), dict(
     DESCRIPTOR = _STATSRESPONSE_RECORD,
     __module__ = 'bartercast4_pb2'
-    # @@protoc_insertion_point(class_scope:StatsResponse.Record)
+    # @@protoc_insertion_point(class_scope:bartercast4.StatsResponse.Record)
     ))
   ,
   DESCRIPTOR = _STATSRESPONSE,
   __module__ = 'bartercast4_pb2'
-  # @@protoc_insertion_point(class_scope:StatsResponse)
+  # @@protoc_insertion_point(class_scope:bartercast4.StatsResponse)
   ))
 _sym_db.RegisterMessage(StatsResponse)
 _sym_db.RegisterMessage(StatsResponse.Record)

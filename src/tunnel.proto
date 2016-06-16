@@ -1,5 +1,7 @@
 import "defaults.proto";
 
+package tunnel;
+
 message TunnelIntroResponse {
     required bool exitnode = 1;
 }

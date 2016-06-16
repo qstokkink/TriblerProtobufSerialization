@@ -1,5 +1,7 @@
 import "defaults.proto";
 
+package search;
+
 message TasteIntroduction {
     required uint32 numpreferences = 1;
     required uint32 tastebloomfilterfunctions = 2 [(length) = 1];

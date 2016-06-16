@@ -1,5 +1,7 @@
 import "defaults.proto";
 
+package allchannel;
+
 message ChannelCast {
 	message Torrent {
 		required string cid = 1 [(length) = 20];

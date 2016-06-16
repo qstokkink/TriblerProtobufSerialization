@@ -1,5 +1,7 @@
 import "defaults.proto";
 
+package demers;
+
 message Text {
 	required uint32 text = 1 [(length) = 1];
 }

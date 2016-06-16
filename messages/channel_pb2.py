@@ -18,8 +18,8 @@ import defaults_pb2
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='channel.proto',
-  package='',
-  serialized_pb=_b('\n\rchannel.proto\x1a\x0e\x64\x65\x66\x61ults.proto\"8\n\x07\x43hannel\x12\x12\n\x04name\x18\x01 \x02(\tB\x04\xc8>\xff\x01\x12\x19\n\x0b\x64\x65scription\x18\x02 \x02(\tB\x04\xc8>\xff\x07\"\x94\x01\n\x07Torrent\x12\x15\n\x08infohash\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x11\n\ttimestamp\x18\x02 \x02(\x04\x12\x0c\n\x04name\x18\x03 \x02(\t\x12\x1c\n\x05\x66iles\x18\x04 \x03(\x0b\x32\r.Torrent.File\x12\x10\n\x08trackers\x18\x05 \x03(\t\x1a!\n\x04\x46ile\x12\x0c\n\x04path\x18\x01 \x02(\t\x12\x0b\n\x03len\x18\x02 \x02(\x03\"\x82\x02\n\x07\x43omment\x12\x0c\n\x04text\x18\x01 \x02(\t\x12\x11\n\ttimestamp\x18\x02 \x02(\x03\x12\x1b\n\x0eplaylistpacket\x18\x03 \x02(\tB\x03\xc8>\x14\x12\x15\n\x08infohash\x18\x04 \x02(\tB\x03\xc8>\x14\x12\x17\n\nreplytomid\x18\x05 \x02(\tB\x03\xc8>\x14\x12\x19\n\x11replytoglobaltime\x18\x06 \x02(\x03\x12\x1a\n\rreplyaftermid\x18\x07 \x02(\tB\x03\xc8>\x14\x12\x1c\n\x14replyafterglobaltime\x18\x08 \x02(\x03\x12\x18\n\x0bplaylistmid\x18\t \x02(\tB\x03\xc8>\x14\x12\x1a\n\x12playlistglobaltime\x18\n \x02(\x03\"\xb0\x01\n\x0cModification\x12\x18\n\x10modificationtype\x18\x01 \x02(\t\x12\x1f\n\x11modificationvalue\x18\x02 \x02(\tB\x04\xc8>\xff\x07\x12\x11\n\ttimestamp\x18\x03 \x02(\x03\x12\x10\n\x03mid\x18\x04 \x02(\tB\x03\xc8>\x14\x12\x12\n\nglobaltime\x18\x05 \x02(\x03\x12\x14\n\x07prevmid\x18\x06 \x01(\tB\x03\xc8>\x14\x12\x16\n\x0eprevglobaltime\x18\x07 \x01(\x03\"N\n\x0fPlaylistTorrent\x12\x15\n\x08infohash\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x10\n\x03mid\x18\x02 \x02(\tB\x03\xc8>\x14\x12\x12\n\nglobaltime\x18\x03 \x02(\x04\")\n\x0eMissingChannel\x12\x17\n\x0fincludeSnapshot\x18\x01 \x02(\x08\"u\n\nModeration\x12\x12\n\x04text\x18\x01 \x02(\tB\x04\xc8>\xff\x07\x12\x11\n\ttimestamp\x18\x02 \x02(\x03\x12\x10\n\x08severity\x18\x03 \x02(\x03\x12\x15\n\x08\x63\x61usemid\x18\x04 \x02(\tB\x03\xc8>\x14\x12\x17\n\x0f\x63\x61useglobaltime\x18\x05 \x02(\x03\"J\n\x0bMarkTorrent\x12\x15\n\x08infohash\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x11\n\ttimestamp\x18\x02 \x02(\x03\x12\x11\n\x04type\x18\x03 \x02(\tB\x03\xc8>\x18\"9\n\x08Playlist\x12\x12\n\x04name\x18\x01 \x02(\tB\x04\xc8>\xff\x01\x12\x19\n\x0b\x64\x65scription\x18\x02 \x02(\tB\x04\xc8>\xff\x07')
+  package='channel',
+  serialized_pb=_b('\n\rchannel.proto\x12\x07\x63hannel\x1a\x0e\x64\x65\x66\x61ults.proto\"8\n\x07\x43hannel\x12\x12\n\x04name\x18\x01 \x02(\tB\x04\xc8>\xff\x01\x12\x19\n\x0b\x64\x65scription\x18\x02 \x02(\tB\x04\xc8>\xff\x07\"\x9c\x01\n\x07Torrent\x12\x15\n\x08infohash\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x11\n\ttimestamp\x18\x02 \x02(\x04\x12\x0c\n\x04name\x18\x03 \x02(\t\x12$\n\x05\x66iles\x18\x04 \x03(\x0b\x32\x15.channel.Torrent.File\x12\x10\n\x08trackers\x18\x05 \x03(\t\x1a!\n\x04\x46ile\x12\x0c\n\x04path\x18\x01 \x02(\t\x12\x0b\n\x03len\x18\x02 \x02(\x03\"\x82\x02\n\x07\x43omment\x12\x0c\n\x04text\x18\x01 \x02(\t\x12\x11\n\ttimestamp\x18\x02 \x02(\x03\x12\x1b\n\x0eplaylistpacket\x18\x03 \x02(\tB\x03\xc8>\x14\x12\x15\n\x08infohash\x18\x04 \x02(\tB\x03\xc8>\x14\x12\x17\n\nreplytomid\x18\x05 \x02(\tB\x03\xc8>\x14\x12\x19\n\x11replytoglobaltime\x18\x06 \x02(\x03\x12\x1a\n\rreplyaftermid\x18\x07 \x02(\tB\x03\xc8>\x14\x12\x1c\n\x14replyafterglobaltime\x18\x08 \x02(\x03\x12\x18\n\x0bplaylistmid\x18\t \x02(\tB\x03\xc8>\x14\x12\x1a\n\x12playlistglobaltime\x18\n \x02(\x03\"\xb0\x01\n\x0cModification\x12\x18\n\x10modificationtype\x18\x01 \x02(\t\x12\x1f\n\x11modificationvalue\x18\x02 \x02(\tB\x04\xc8>\xff\x07\x12\x11\n\ttimestamp\x18\x03 \x02(\x03\x12\x10\n\x03mid\x18\x04 \x02(\tB\x03\xc8>\x14\x12\x12\n\nglobaltime\x18\x05 \x02(\x03\x12\x14\n\x07prevmid\x18\x06 \x01(\tB\x03\xc8>\x14\x12\x16\n\x0eprevglobaltime\x18\x07 \x01(\x03\"N\n\x0fPlaylistTorrent\x12\x15\n\x08infohash\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x10\n\x03mid\x18\x02 \x02(\tB\x03\xc8>\x14\x12\x12\n\nglobaltime\x18\x03 \x02(\x04\")\n\x0eMissingChannel\x12\x17\n\x0fincludeSnapshot\x18\x01 \x02(\x08\"u\n\nModeration\x12\x12\n\x04text\x18\x01 \x02(\tB\x04\xc8>\xff\x07\x12\x11\n\ttimestamp\x18\x02 \x02(\x03\x12\x10\n\x08severity\x18\x03 \x02(\x03\x12\x15\n\x08\x63\x61usemid\x18\x04 \x02(\tB\x03\xc8>\x14\x12\x17\n\x0f\x63\x61useglobaltime\x18\x05 \x02(\x03\"J\n\x0bMarkTorrent\x12\x15\n\x08infohash\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x11\n\ttimestamp\x18\x02 \x02(\x03\x12\x11\n\x04type\x18\x03 \x02(\tB\x03\xc8>\x18\"9\n\x08Playlist\x12\x12\n\x04name\x18\x01 \x02(\tB\x04\xc8>\xff\x01\x12\x19\n\x0b\x64\x65scription\x18\x02 \x02(\tB\x04\xc8>\xff\x07')
   ,
   dependencies=[defaults_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -29,20 +29,20 @@ _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 _CHANNEL = _descriptor.Descriptor(
   name='Channel',
-  full_name='Channel',
+  full_name='channel.Channel',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='name', full_name='Channel.name', index=0,
+      name='name', full_name='channel.Channel.name', index=0,
       number=1, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\377\001'))),
     _descriptor.FieldDescriptor(
-      name='description', full_name='Channel.description', index=1,
+      name='description', full_name='channel.Channel.description', index=1,
       number=2, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -59,27 +59,27 @@ _CHANNEL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=33,
-  serialized_end=89,
+  serialized_start=42,
+  serialized_end=98,
 )
 
 
 _TORRENT_FILE = _descriptor.Descriptor(
   name='File',
-  full_name='Torrent.File',
+  full_name='channel.Torrent.File',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='path', full_name='Torrent.File.path', index=0,
+      name='path', full_name='channel.Torrent.File.path', index=0,
       number=1, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='len', full_name='Torrent.File.len', index=1,
+      name='len', full_name='channel.Torrent.File.len', index=1,
       number=2, type=3, cpp_type=2, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -96,47 +96,47 @@ _TORRENT_FILE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=207,
-  serialized_end=240,
+  serialized_start=224,
+  serialized_end=257,
 )
 
 _TORRENT = _descriptor.Descriptor(
   name='Torrent',
-  full_name='Torrent',
+  full_name='channel.Torrent',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='infohash', full_name='Torrent.infohash', index=0,
+      name='infohash', full_name='channel.Torrent.infohash', index=0,
       number=1, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\024'))),
     _descriptor.FieldDescriptor(
-      name='timestamp', full_name='Torrent.timestamp', index=1,
+      name='timestamp', full_name='channel.Torrent.timestamp', index=1,
       number=2, type=4, cpp_type=4, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='name', full_name='Torrent.name', index=2,
+      name='name', full_name='channel.Torrent.name', index=2,
       number=3, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='files', full_name='Torrent.files', index=3,
+      name='files', full_name='channel.Torrent.files', index=3,
       number=4, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='trackers', full_name='Torrent.trackers', index=4,
+      name='trackers', full_name='channel.Torrent.trackers', index=4,
       number=5, type=9, cpp_type=9, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -153,83 +153,83 @@ _TORRENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=92,
-  serialized_end=240,
+  serialized_start=101,
+  serialized_end=257,
 )
 
 
 _COMMENT = _descriptor.Descriptor(
   name='Comment',
-  full_name='Comment',
+  full_name='channel.Comment',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='text', full_name='Comment.text', index=0,
+      name='text', full_name='channel.Comment.text', index=0,
       number=1, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='timestamp', full_name='Comment.timestamp', index=1,
+      name='timestamp', full_name='channel.Comment.timestamp', index=1,
       number=2, type=3, cpp_type=2, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='playlistpacket', full_name='Comment.playlistpacket', index=2,
+      name='playlistpacket', full_name='channel.Comment.playlistpacket', index=2,
       number=3, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\024'))),
     _descriptor.FieldDescriptor(
-      name='infohash', full_name='Comment.infohash', index=3,
+      name='infohash', full_name='channel.Comment.infohash', index=3,
       number=4, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\024'))),
     _descriptor.FieldDescriptor(
-      name='replytomid', full_name='Comment.replytomid', index=4,
+      name='replytomid', full_name='channel.Comment.replytomid', index=4,
       number=5, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\024'))),
     _descriptor.FieldDescriptor(
-      name='replytoglobaltime', full_name='Comment.replytoglobaltime', index=5,
+      name='replytoglobaltime', full_name='channel.Comment.replytoglobaltime', index=5,
       number=6, type=3, cpp_type=2, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='replyaftermid', full_name='Comment.replyaftermid', index=6,
+      name='replyaftermid', full_name='channel.Comment.replyaftermid', index=6,
       number=7, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\024'))),
     _descriptor.FieldDescriptor(
-      name='replyafterglobaltime', full_name='Comment.replyafterglobaltime', index=7,
+      name='replyafterglobaltime', full_name='channel.Comment.replyafterglobaltime', index=7,
       number=8, type=3, cpp_type=2, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='playlistmid', full_name='Comment.playlistmid', index=8,
+      name='playlistmid', full_name='channel.Comment.playlistmid', index=8,
       number=9, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\024'))),
     _descriptor.FieldDescriptor(
-      name='playlistglobaltime', full_name='Comment.playlistglobaltime', index=9,
+      name='playlistglobaltime', full_name='channel.Comment.playlistglobaltime', index=9,
       number=10, type=3, cpp_type=2, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -246,62 +246,62 @@ _COMMENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=243,
-  serialized_end=501,
+  serialized_start=260,
+  serialized_end=518,
 )
 
 
 _MODIFICATION = _descriptor.Descriptor(
   name='Modification',
-  full_name='Modification',
+  full_name='channel.Modification',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='modificationtype', full_name='Modification.modificationtype', index=0,
+      name='modificationtype', full_name='channel.Modification.modificationtype', index=0,
       number=1, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='modificationvalue', full_name='Modification.modificationvalue', index=1,
+      name='modificationvalue', full_name='channel.Modification.modificationvalue', index=1,
       number=2, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\377\007'))),
     _descriptor.FieldDescriptor(
-      name='timestamp', full_name='Modification.timestamp', index=2,
+      name='timestamp', full_name='channel.Modification.timestamp', index=2,
       number=3, type=3, cpp_type=2, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='mid', full_name='Modification.mid', index=3,
+      name='mid', full_name='channel.Modification.mid', index=3,
       number=4, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\024'))),
     _descriptor.FieldDescriptor(
-      name='globaltime', full_name='Modification.globaltime', index=4,
+      name='globaltime', full_name='channel.Modification.globaltime', index=4,
       number=5, type=3, cpp_type=2, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='prevmid', full_name='Modification.prevmid', index=5,
+      name='prevmid', full_name='channel.Modification.prevmid', index=5,
       number=6, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\024'))),
     _descriptor.FieldDescriptor(
-      name='prevglobaltime', full_name='Modification.prevglobaltime', index=6,
+      name='prevglobaltime', full_name='channel.Modification.prevglobaltime', index=6,
       number=7, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -318,34 +318,34 @@ _MODIFICATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=504,
-  serialized_end=680,
+  serialized_start=521,
+  serialized_end=697,
 )
 
 
 _PLAYLISTTORRENT = _descriptor.Descriptor(
   name='PlaylistTorrent',
-  full_name='PlaylistTorrent',
+  full_name='channel.PlaylistTorrent',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='infohash', full_name='PlaylistTorrent.infohash', index=0,
+      name='infohash', full_name='channel.PlaylistTorrent.infohash', index=0,
       number=1, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\024'))),
     _descriptor.FieldDescriptor(
-      name='mid', full_name='PlaylistTorrent.mid', index=1,
+      name='mid', full_name='channel.PlaylistTorrent.mid', index=1,
       number=2, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\024'))),
     _descriptor.FieldDescriptor(
-      name='globaltime', full_name='PlaylistTorrent.globaltime', index=2,
+      name='globaltime', full_name='channel.PlaylistTorrent.globaltime', index=2,
       number=3, type=4, cpp_type=4, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -362,20 +362,20 @@ _PLAYLISTTORRENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=682,
-  serialized_end=760,
+  serialized_start=699,
+  serialized_end=777,
 )
 
 
 _MISSINGCHANNEL = _descriptor.Descriptor(
   name='MissingChannel',
-  full_name='MissingChannel',
+  full_name='channel.MissingChannel',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='includeSnapshot', full_name='MissingChannel.includeSnapshot', index=0,
+      name='includeSnapshot', full_name='channel.MissingChannel.includeSnapshot', index=0,
       number=1, type=8, cpp_type=7, label=2,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
@@ -392,48 +392,48 @@ _MISSINGCHANNEL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=762,
-  serialized_end=803,
+  serialized_start=779,
+  serialized_end=820,
 )
 
 
 _MODERATION = _descriptor.Descriptor(
   name='Moderation',
-  full_name='Moderation',
+  full_name='channel.Moderation',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='text', full_name='Moderation.text', index=0,
+      name='text', full_name='channel.Moderation.text', index=0,
       number=1, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\377\007'))),
     _descriptor.FieldDescriptor(
-      name='timestamp', full_name='Moderation.timestamp', index=1,
+      name='timestamp', full_name='channel.Moderation.timestamp', index=1,
       number=2, type=3, cpp_type=2, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='severity', full_name='Moderation.severity', index=2,
+      name='severity', full_name='channel.Moderation.severity', index=2,
       number=3, type=3, cpp_type=2, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='causemid', full_name='Moderation.causemid', index=3,
+      name='causemid', full_name='channel.Moderation.causemid', index=3,
       number=4, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\024'))),
     _descriptor.FieldDescriptor(
-      name='causeglobaltime', full_name='Moderation.causeglobaltime', index=4,
+      name='causeglobaltime', full_name='channel.Moderation.causeglobaltime', index=4,
       number=5, type=3, cpp_type=2, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -450,34 +450,34 @@ _MODERATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=805,
-  serialized_end=922,
+  serialized_start=822,
+  serialized_end=939,
 )
 
 
 _MARKTORRENT = _descriptor.Descriptor(
   name='MarkTorrent',
-  full_name='MarkTorrent',
+  full_name='channel.MarkTorrent',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='infohash', full_name='MarkTorrent.infohash', index=0,
+      name='infohash', full_name='channel.MarkTorrent.infohash', index=0,
       number=1, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\024'))),
     _descriptor.FieldDescriptor(
-      name='timestamp', full_name='MarkTorrent.timestamp', index=1,
+      name='timestamp', full_name='channel.MarkTorrent.timestamp', index=1,
       number=2, type=3, cpp_type=2, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='type', full_name='MarkTorrent.type', index=2,
+      name='type', full_name='channel.MarkTorrent.type', index=2,
       number=3, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -494,27 +494,27 @@ _MARKTORRENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=924,
-  serialized_end=998,
+  serialized_start=941,
+  serialized_end=1015,
 )
 
 
 _PLAYLIST = _descriptor.Descriptor(
   name='Playlist',
-  full_name='Playlist',
+  full_name='channel.Playlist',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='name', full_name='Playlist.name', index=0,
+      name='name', full_name='channel.Playlist.name', index=0,
       number=1, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\377\001'))),
     _descriptor.FieldDescriptor(
-      name='description', full_name='Playlist.description', index=1,
+      name='description', full_name='channel.Playlist.description', index=1,
       number=2, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -531,8 +531,8 @@ _PLAYLIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1000,
-  serialized_end=1057,
+  serialized_start=1017,
+  serialized_end=1074,
 )
 
 _TORRENT_FILE.containing_type = _TORRENT
@@ -550,7 +550,7 @@ DESCRIPTOR.message_types_by_name['Playlist'] = _PLAYLIST
 Channel = _reflection.GeneratedProtocolMessageType('Channel', (_message.Message,), dict(
   DESCRIPTOR = _CHANNEL,
   __module__ = 'channel_pb2'
-  # @@protoc_insertion_point(class_scope:Channel)
+  # @@protoc_insertion_point(class_scope:channel.Channel)
   ))
 _sym_db.RegisterMessage(Channel)
 
@@ -559,12 +559,12 @@ Torrent = _reflection.GeneratedProtocolMessageType('Torrent', (_message.Message,
   File = _reflection.GeneratedProtocolMessageType('File', (_message.Message,), dict(
     DESCRIPTOR = _TORRENT_FILE,
     __module__ = 'channel_pb2'
-    # @@protoc_insertion_point(class_scope:Torrent.File)
+    # @@protoc_insertion_point(class_scope:channel.Torrent.File)
     ))
   ,
   DESCRIPTOR = _TORRENT,
   __module__ = 'channel_pb2'
-  # @@protoc_insertion_point(class_scope:Torrent)
+  # @@protoc_insertion_point(class_scope:channel.Torrent)
   ))
 _sym_db.RegisterMessage(Torrent)
 _sym_db.RegisterMessage(Torrent.File)
@@ -572,49 +572,49 @@ _sym_db.RegisterMessage(Torrent.File)
 Comment = _reflection.GeneratedProtocolMessageType('Comment', (_message.Message,), dict(
   DESCRIPTOR = _COMMENT,
   __module__ = 'channel_pb2'
-  # @@protoc_insertion_point(class_scope:Comment)
+  # @@protoc_insertion_point(class_scope:channel.Comment)
   ))
 _sym_db.RegisterMessage(Comment)
 
 Modification = _reflection.GeneratedProtocolMessageType('Modification', (_message.Message,), dict(
   DESCRIPTOR = _MODIFICATION,
   __module__ = 'channel_pb2'
-  # @@protoc_insertion_point(class_scope:Modification)
+  # @@protoc_insertion_point(class_scope:channel.Modification)
   ))
 _sym_db.RegisterMessage(Modification)
 
 PlaylistTorrent = _reflection.GeneratedProtocolMessageType('PlaylistTorrent', (_message.Message,), dict(
   DESCRIPTOR = _PLAYLISTTORRENT,
   __module__ = 'channel_pb2'
-  # @@protoc_insertion_point(class_scope:PlaylistTorrent)
+  # @@protoc_insertion_point(class_scope:channel.PlaylistTorrent)
   ))
 _sym_db.RegisterMessage(PlaylistTorrent)
 
 MissingChannel = _reflection.GeneratedProtocolMessageType('MissingChannel', (_message.Message,), dict(
   DESCRIPTOR = _MISSINGCHANNEL,
   __module__ = 'channel_pb2'
-  # @@protoc_insertion_point(class_scope:MissingChannel)
+  # @@protoc_insertion_point(class_scope:channel.MissingChannel)
   ))
 _sym_db.RegisterMessage(MissingChannel)
 
 Moderation = _reflection.GeneratedProtocolMessageType('Moderation', (_message.Message,), dict(
   DESCRIPTOR = _MODERATION,
   __module__ = 'channel_pb2'
-  # @@protoc_insertion_point(class_scope:Moderation)
+  # @@protoc_insertion_point(class_scope:channel.Moderation)
   ))
 _sym_db.RegisterMessage(Moderation)
 
 MarkTorrent = _reflection.GeneratedProtocolMessageType('MarkTorrent', (_message.Message,), dict(
   DESCRIPTOR = _MARKTORRENT,
   __module__ = 'channel_pb2'
-  # @@protoc_insertion_point(class_scope:MarkTorrent)
+  # @@protoc_insertion_point(class_scope:channel.MarkTorrent)
   ))
 _sym_db.RegisterMessage(MarkTorrent)
 
 Playlist = _reflection.GeneratedProtocolMessageType('Playlist', (_message.Message,), dict(
   DESCRIPTOR = _PLAYLIST,
   __module__ = 'channel_pb2'
-  # @@protoc_insertion_point(class_scope:Playlist)
+  # @@protoc_insertion_point(class_scope:channel.Playlist)
   ))
 _sym_db.RegisterMessage(Playlist)
 

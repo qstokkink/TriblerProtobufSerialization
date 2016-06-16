@@ -1,5 +1,7 @@
 import "defaults.proto";
 
+package channel;
+
 message Channel {
 	required string name = 1 [(length) = 255];
 	required string description = 2 [(length) = 1023];
