@@ -28,7 +28,7 @@ This is a custom option to specify the maximum number of bytes a field can _maxi
 Because values are packed, this will - in almost all cases - never be the actual amount of bytes the field will use _on-wire_.
 
 ### Compile using the compiler
-To compile your fresh `.proto` just call the `compiler.py` script in the `src/` folder (make sure to install the protoc compiler first: `sudo apt-get install protobuf-compiler`).
+To compile your fresh `.proto` just call the `compiler.py` script in the `src/` folder (make sure to install the protoc compiler first: `sudo apt-get install libprotobuf-dev protobuf-compiler`).
 This will create a file called `<your_proto_file_name>_pb2.py`.
 In our previous example:
 

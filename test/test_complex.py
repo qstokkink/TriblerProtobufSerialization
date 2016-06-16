@@ -64,6 +64,14 @@ class TestSerialize(unittest.TestCase):
         with self.assertRaises(FieldTooLongException):
             self.s.serialize("TestComplex", [("", ["longerthantwentycharacters"])])
 
+    def test_obj_onto_repeated(self):
+        with self.assertRaises(FieldWrongTypeException):
+            self.s.serialize("TestComplex", [("", ("m1",))])
+
+    def test_repeated_onto_obj(self):
+        with self.assertRaises(FieldWrongTypeException):
+            self.s.serialize("TestComplex", [["", ["m1"]]])
+
     def test_unicode_strings(self):
         sbs = '}\xc8A\xc1\x8a}D\xe8\xea\x93}'
         enc = self.s.serialize("TestComplex", [(sbs, ["m1", "m2"])])
