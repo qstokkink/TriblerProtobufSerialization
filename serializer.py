@@ -1,3 +1,6 @@
+import os
+os.environ["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION"] = "cpp"
+os.environ["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION_VERSION"] = "2"
 import google.protobuf
 import logging
 from struct import pack, unpack_from, calcsize
@@ -211,12 +214,16 @@ class Serializer:
                     # Composite lists will never
                     # need to be set by us
                     self._map_onto(nested, sub)
-                else:
+                elif hasattr(field_struct, 'append'):
                     # Scalar lists will always
                     # need to be set by us
                     field_struct.append(self._process_value(sub))
                     if options:
                         self._check_field_length(field_struct, sub, options)
+                else:
+                    raise FieldWrongTypeException("Tried to map illegal structure " +
+                                                    str(value) +
+                                                    " onto an object/message field.")
         elif isinstance(value, dict):
             # Fill message structure
             # a.b = {c: 1, d: 2}
@@ -232,6 +239,10 @@ class Serializer:
             # a.b = (1, 2)
             #   a.b.c = 1
             #   a.b.d = 2
+            if not hasattr(field_struct, 'DESCRIPTOR'):
+                raise FieldWrongTypeException("Tried to map illegal structure " +
+                                                str(value) +
+                                                " onto a list/repeated field.")
             fields = field_struct.DESCRIPTOR.fields
             for i in range(len(value)):
                 nested = getattr(field_struct, fields[i].name)
@@ -355,7 +366,7 @@ class Serializer:
                 # This becomes a problem when `garbage` contains
                 # another message.
                 struct.ParseFromString(data)
-                initialized = True
+                initialized = struct.IsInitialized()
                 break
             except google.protobuf.message.DecodeError, e:
                 if str(e).startswith("Trunc"):
