@@ -299,8 +299,12 @@ class Serializer:
             value = args[index] if index < len(args) else kwargs.get(field.name)
             # dict.get() returns None if the entry was not found
             if value == None:
+                # If a field is optional, it can be skipped
+                if field.label == field.LABEL_OPTIONAL:
+                    continue
                 raise FieldNotDefinedException("The field '" + field.name +
-                    "' was not defined when serializing a '" + name + "'")
+                    "' was not defined when serializing a '" +
+                    self.message_hashes[repr(name)] + "'")
             try:
                 r = self._map_onto(getattr(struct, field.name), value, self._get_options(struct, field.name))
                 if r:
@@ -336,7 +340,7 @@ class Serializer:
         name = ""
         sbuffer = data
         # Skip characters until a valid message id appears
-        while len(sbuffer) > self.header_size:
+        while len(sbuffer) >= self.header_size:
             header = sbuffer[:self.header_size]
             if repr(header) in self.messages:
                 name = header
@@ -357,7 +361,7 @@ class Serializer:
             :returns: is valid, the message struct, its length
         """
         initialized = False
-        while len(data) > 0:
+        while len(data) >= 0:
             try:
                 # MergeFromString will ignore all data after it
                 # has finished parsing a message from the start
@@ -369,8 +373,7 @@ class Serializer:
                 initialized = struct.IsInitialized()
                 break
             except google.protobuf.message.DecodeError, e:
-                if str(e).startswith("Trunc"):
-                    break
+                pass
             if not persistent_end:
                 break
             data = data[:-1]
@@ -404,7 +407,8 @@ class Serializer:
         if (not initialized) or ((not persistent_end) and (len(sbuffer) != actual_size)):
             # Possible illegal header
             if persistent_start:
-                self.unserialize(data[start_skip+self.header_size:], persistent_start, persistent_end, keep_remainder)
+                self.unserialize(data[start_skip+self.header_size:], persistent_start,
+                                    persistent_end, keep_remainder)
             # If the other call could not clear the remainder, keep it
             if (self.remainder == data[start_skip+self.header_size:]) and keep_remainder:
                 self.remainder = data[start_skip:]
@@ -417,6 +421,7 @@ class Serializer:
             self.remainder = data[start_skip + self.header_size + actual_size:]
         # If there might still be a message to read
         if len(self.remainder) > 0:
-            return_list.append(self.unserialize('', persistent_start, persistent_end, keep_remainder))
+            return_list.append(self.unserialize('', persistent_start, persistent_end,
+                                keep_remainder))
         return return_list
 

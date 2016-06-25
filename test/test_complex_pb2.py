@@ -19,7 +19,7 @@ import messages.defaults_pb2 as defaults_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='test_complex.proto',
   package='',
-  serialized_pb=_b('\n\x12test_complex.proto\x1a\x0e\x64\x65\x66\x61ults.proto\"i\n\x0bTestComplex\x12$\n\x07nesteds\x18\x01 \x03(\x0b\x32\x13.TestComplex.Nested\x1a\x34\n\x06Nested\x12\x13\n\x06normal\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x15\n\x08multiple\x18\x02 \x03(\tB\x03\xc8>\x14')
+  serialized_pb=_b('\n\x12test_complex.proto\x1a\x0e\x64\x65\x66\x61ults.proto\"i\n\x0bTestComplex\x12$\n\x07nesteds\x18\x01 \x03(\x0b\x32\x13.TestComplex.Nested\x1a\x34\n\x06Nested\x12\x13\n\x06normal\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x15\n\x08multiple\x18\x02 \x03(\tB\x03\xc8>\x14\"\x1d\n\x0cTestOptional\x12\r\n\x05\x66ield\x18\x01 \x01(\t')
   ,
   dependencies=[defaults_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -92,9 +92,40 @@ _TESTCOMPLEX = _descriptor.Descriptor(
   serialized_end=143,
 )
 
+
+_TESTOPTIONAL = _descriptor.Descriptor(
+  name='TestOptional',
+  full_name='TestOptional',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='field', full_name='TestOptional.field', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=145,
+  serialized_end=174,
+)
+
 _TESTCOMPLEX_NESTED.containing_type = _TESTCOMPLEX
 _TESTCOMPLEX.fields_by_name['nesteds'].message_type = _TESTCOMPLEX_NESTED
 DESCRIPTOR.message_types_by_name['TestComplex'] = _TESTCOMPLEX
+DESCRIPTOR.message_types_by_name['TestOptional'] = _TESTOPTIONAL
 
 TestComplex = _reflection.GeneratedProtocolMessageType('TestComplex', (_message.Message,), dict(
 
@@ -110,6 +141,13 @@ TestComplex = _reflection.GeneratedProtocolMessageType('TestComplex', (_message.
   ))
 _sym_db.RegisterMessage(TestComplex)
 _sym_db.RegisterMessage(TestComplex.Nested)
+
+TestOptional = _reflection.GeneratedProtocolMessageType('TestOptional', (_message.Message,), dict(
+  DESCRIPTOR = _TESTOPTIONAL,
+  __module__ = 'test_complex_pb2'
+  # @@protoc_insertion_point(class_scope:TestOptional)
+  ))
+_sym_db.RegisterMessage(TestOptional)
 
 
 _TESTCOMPLEX_NESTED.fields_by_name['normal'].has_options = True
