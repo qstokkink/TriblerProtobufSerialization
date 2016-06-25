@@ -87,5 +87,29 @@ class TestSerialize(unittest.TestCase):
         self.s.unserialize(enc)
         self.assertEqual(self.calls, 1)
 
+    def test_optional_missing(self):
+        enc = self.s.serialize("TestOptional")
+
+        def f(obj):
+            self.assertTrue(obj.IsInitialized())
+            self.assertTrue(not obj.field)
+            self.calls += 1
+
+        self.s.add_handler("TestOptional", f)
+        self.s.unserialize(enc)
+        self.assertEqual(self.calls, 1)
+
+    def test_optional_set(self):
+        enc = self.s.serialize("TestOptional", "test")
+
+        def f(obj):
+            self.assertTrue(obj.IsInitialized())
+            self.assertEqual(obj.field, "test")
+            self.calls += 1
+
+        self.s.add_handler("TestOptional", f)
+        self.s.unserialize(enc)
+        self.assertEqual(self.calls, 1)
+
 if __name__ == '__main__':
     unittest.main()

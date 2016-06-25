@@ -108,6 +108,15 @@ class TestUnserialize(unittest.TestCase):
         
         self.assertEqual(self.calls, 0)
 
+    def test_half_message(self):
+        def f(obj):
+            self.calls += 1
+
+        self.s.add_handler("Test", f)
+        self.s.unserialize(self.enc[:100])
+        
+        self.assertEqual(self.calls, 0)
+
     def test_double(self):
         def f(obj):
             self.assertTrue(obj.IsInitialized())

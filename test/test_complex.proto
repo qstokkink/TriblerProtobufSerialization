@@ -7,3 +7,7 @@ message TestComplex {
 	}
 	repeated Nested nesteds = 1;
 }
+
+message TestOptional {
+    optional string field = 1;
+}
