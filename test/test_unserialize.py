@@ -154,7 +154,7 @@ class TestUnserialize(unittest.TestCase):
         rval = self.s.unserialize(self.enc)
 
         self.assertEqual(self.calls, 1)
-        self.assertEqual(rval[0][1], self.expected)
+        self.assertEqual(id(rval[0][1]), id(self.expected))
 
 
     def test_keep_remainder(self):
@@ -170,6 +170,17 @@ class TestUnserialize(unittest.TestCase):
 
         self.assertEqual(self.calls, 2)
         
+    def test_convert_unicode(self):
+        def f(obj):
+            self.assertTrue(obj.IsInitialized())
+            for (_, value) in obj.ListFields():
+                self.assertIn(value, self.args)
+                self.assertNotIsInstance(value, unicode)
+            self.calls += 1
+
+        self.s.add_handler("Test", f)
+        self.s.unserialize(self.enc)
+        self.assertEqual(self.calls, 1)
 
 if __name__ == '__main__':
     unittest.main()
