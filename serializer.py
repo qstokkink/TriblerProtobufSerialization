@@ -9,6 +9,7 @@ import sys
 
 import messages
 from exception import *
+from datawrapper import Wrapper
 
 class Serializer:
 
@@ -414,8 +415,9 @@ class Serializer:
                 self.remainder = data[start_skip:]
             return
         # Forward the (now valid) struct to the handlers
-        return_list = [(self.message_hashes[repr(name)], struct)]
-        self._forward_message(name, struct)
+        wrapped_struct = Wrapper(struct)
+        return_list = [(self.message_hashes[repr(name)], wrapped_struct)]
+        self._forward_message(name, wrapped_struct)
         # If we have leftovers, store them
         if start_skip + self.header_size + actual_size < len(data):
             self.remainder = data[start_skip + self.header_size + actual_size:]

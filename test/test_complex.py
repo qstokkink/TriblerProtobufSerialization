@@ -78,7 +78,7 @@ class TestSerialize(unittest.TestCase):
 
         def f(obj):
             self.assertTrue(obj.IsInitialized())
-            self.assertEqual(obj.nesteds[0].normal, u'}\xc8A\xc1\x8a}D\xe8\xea\x93}')
+            self.assertEqual(obj.nesteds[0].normal, '}\xc8A\xc1\x8a}D\xe8\xea\x93}')
             self.assertEqual(obj.nesteds[0].multiple[0], "m1")
             self.assertEqual(obj.nesteds[0].multiple[1], "m2")
             self.calls += 1
