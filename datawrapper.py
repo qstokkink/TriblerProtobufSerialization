@@ -23,15 +23,15 @@ class Wrapper:
                 else:
                     self.innerdict[field.name] = self._unicode_to_str(value)
         elif self._is_non_native(pb_field):
-            for i in range(len(pb_field)):
-                if self._is_non_native(pb_field[i]):
-                    value = Wrapper(pb_field[i])
+            for x in list(pb_field):
+                if self._is_non_native(x):
+                    value = Wrapper(x)
                     if value.innerlist:
                         self.innerlist.append(value.innerlist)
                     else:
                         self.innerlist.append(value)
                 else:
-                    self.innerlist.append(self._unicode_to_str(pb_field[i]))
+                    self.innerlist.append(self._unicode_to_str(x))
         else:
             # We should not be wrapping native datatypes
             raise RuntimeError()
