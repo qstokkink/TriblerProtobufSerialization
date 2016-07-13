@@ -37,7 +37,7 @@ class Wrapper:
             raise RuntimeError()
 
     def _is_non_native(self, o):
-        return (hasattr(o, 'DESCRIPTOR') or hasattr(o, 'append'))
+        return (hasattr(o, 'DESCRIPTOR') or hasattr(o, 'append') or hasattr(o, 'MergeFrom'))
 
     def _unicode_to_str(self, s):
         """Convert an internal unicode string
