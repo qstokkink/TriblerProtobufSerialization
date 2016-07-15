@@ -45,7 +45,7 @@ class Wrapper:
 
             :param s: string to convert
         """
-        if isinstance(s, unicode):
+        if isinstance(s, unicode) and all([ord(c) < 256 for c in s]):
             return "".join([chr(ord(c)) for c in s])
         return s
 
