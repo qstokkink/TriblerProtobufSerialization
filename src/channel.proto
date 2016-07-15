@@ -22,14 +22,14 @@ message Torrent {
 message Comment {
 	required string text = 1;
 	required int64 timestamp = 2;
-	required string playlistpacket = 3 [(length) = 20];
+	required int64 playlistpacket = 3;
 	required string infohash = 4 [(length) = 20];
-	required string replytomid = 5 [(length) = 20];
-	required int64 replytoglobaltime = 6;
-	required string replyaftermid = 7 [(length) = 20];
-	required int64 replyafterglobaltime = 8;
-	required string playlistmid = 9 [(length) = 20];
-	required int64 playlistglobaltime = 10;
+	optional string replytomid = 5 [(length) = 20];
+	optional int64 replytoglobaltime = 6;
+	optional string replyaftermid = 7 [(length) = 20];
+	optional int64 replyafterglobaltime = 8;
+	optional string playlistmid = 9 [(length) = 20];
+	optional int64 playlistglobaltime = 10;
 }
 
 message Modification {

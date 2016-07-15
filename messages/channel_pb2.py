@@ -19,7 +19,7 @@ import defaults_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='channel.proto',
   package='channel',
-  serialized_pb=_b('\n\rchannel.proto\x12\x07\x63hannel\x1a\x0e\x64\x65\x66\x61ults.proto\"8\n\x07\x43hannel\x12\x12\n\x04name\x18\x01 \x02(\tB\x04\xc8>\xff\x01\x12\x19\n\x0b\x64\x65scription\x18\x02 \x02(\tB\x04\xc8>\xff\x07\"\x9c\x01\n\x07Torrent\x12\x15\n\x08infohash\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x11\n\ttimestamp\x18\x02 \x02(\x04\x12\x0c\n\x04name\x18\x03 \x02(\t\x12$\n\x05\x66iles\x18\x04 \x03(\x0b\x32\x15.channel.Torrent.File\x12\x10\n\x08trackers\x18\x05 \x03(\t\x1a!\n\x04\x46ile\x12\x0c\n\x04path\x18\x01 \x02(\t\x12\x0b\n\x03len\x18\x02 \x02(\x03\"\x82\x02\n\x07\x43omment\x12\x0c\n\x04text\x18\x01 \x02(\t\x12\x11\n\ttimestamp\x18\x02 \x02(\x03\x12\x1b\n\x0eplaylistpacket\x18\x03 \x02(\tB\x03\xc8>\x14\x12\x15\n\x08infohash\x18\x04 \x02(\tB\x03\xc8>\x14\x12\x17\n\nreplytomid\x18\x05 \x02(\tB\x03\xc8>\x14\x12\x19\n\x11replytoglobaltime\x18\x06 \x02(\x03\x12\x1a\n\rreplyaftermid\x18\x07 \x02(\tB\x03\xc8>\x14\x12\x1c\n\x14replyafterglobaltime\x18\x08 \x02(\x03\x12\x18\n\x0bplaylistmid\x18\t \x02(\tB\x03\xc8>\x14\x12\x1a\n\x12playlistglobaltime\x18\n \x02(\x03\"\xb0\x01\n\x0cModification\x12\x18\n\x10modificationtype\x18\x01 \x02(\t\x12\x1f\n\x11modificationvalue\x18\x02 \x02(\tB\x04\xc8>\xff\x07\x12\x11\n\ttimestamp\x18\x03 \x02(\x03\x12\x10\n\x03mid\x18\x04 \x02(\tB\x03\xc8>\x14\x12\x12\n\nglobaltime\x18\x05 \x02(\x03\x12\x14\n\x07prevmid\x18\x06 \x01(\tB\x03\xc8>\x14\x12\x16\n\x0eprevglobaltime\x18\x07 \x01(\x03\"N\n\x0fPlaylistTorrent\x12\x15\n\x08infohash\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x10\n\x03mid\x18\x02 \x02(\tB\x03\xc8>\x14\x12\x12\n\nglobaltime\x18\x03 \x02(\x04\")\n\x0eMissingChannel\x12\x17\n\x0fincludeSnapshot\x18\x01 \x02(\x08\"u\n\nModeration\x12\x12\n\x04text\x18\x01 \x02(\tB\x04\xc8>\xff\x07\x12\x11\n\ttimestamp\x18\x02 \x02(\x03\x12\x10\n\x08severity\x18\x03 \x02(\x03\x12\x15\n\x08\x63\x61usemid\x18\x04 \x02(\tB\x03\xc8>\x14\x12\x17\n\x0f\x63\x61useglobaltime\x18\x05 \x02(\x03\"J\n\x0bMarkTorrent\x12\x15\n\x08infohash\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x11\n\ttimestamp\x18\x02 \x02(\x03\x12\x11\n\x04type\x18\x03 \x02(\tB\x03\xc8>\x18\"9\n\x08Playlist\x12\x12\n\x04name\x18\x01 \x02(\tB\x04\xc8>\xff\x01\x12\x19\n\x0b\x64\x65scription\x18\x02 \x02(\tB\x04\xc8>\xff\x07')
+  serialized_pb=_b('\n\rchannel.proto\x12\x07\x63hannel\x1a\x0e\x64\x65\x66\x61ults.proto\"8\n\x07\x43hannel\x12\x12\n\x04name\x18\x01 \x02(\tB\x04\xc8>\xff\x01\x12\x19\n\x0b\x64\x65scription\x18\x02 \x02(\tB\x04\xc8>\xff\x07\"\x9c\x01\n\x07Torrent\x12\x15\n\x08infohash\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x11\n\ttimestamp\x18\x02 \x02(\x04\x12\x0c\n\x04name\x18\x03 \x02(\t\x12$\n\x05\x66iles\x18\x04 \x03(\x0b\x32\x15.channel.Torrent.File\x12\x10\n\x08trackers\x18\x05 \x03(\t\x1a!\n\x04\x46ile\x12\x0c\n\x04path\x18\x01 \x02(\t\x12\x0b\n\x03len\x18\x02 \x02(\x03\"\xfd\x01\n\x07\x43omment\x12\x0c\n\x04text\x18\x01 \x02(\t\x12\x11\n\ttimestamp\x18\x02 \x02(\x03\x12\x16\n\x0eplaylistpacket\x18\x03 \x02(\x03\x12\x15\n\x08infohash\x18\x04 \x02(\tB\x03\xc8>\x14\x12\x17\n\nreplytomid\x18\x05 \x01(\tB\x03\xc8>\x14\x12\x19\n\x11replytoglobaltime\x18\x06 \x01(\x03\x12\x1a\n\rreplyaftermid\x18\x07 \x01(\tB\x03\xc8>\x14\x12\x1c\n\x14replyafterglobaltime\x18\x08 \x01(\x03\x12\x18\n\x0bplaylistmid\x18\t \x01(\tB\x03\xc8>\x14\x12\x1a\n\x12playlistglobaltime\x18\n \x01(\x03\"\xb0\x01\n\x0cModification\x12\x18\n\x10modificationtype\x18\x01 \x02(\t\x12\x1f\n\x11modificationvalue\x18\x02 \x02(\tB\x04\xc8>\xff\x07\x12\x11\n\ttimestamp\x18\x03 \x02(\x03\x12\x10\n\x03mid\x18\x04 \x02(\tB\x03\xc8>\x14\x12\x12\n\nglobaltime\x18\x05 \x02(\x03\x12\x14\n\x07prevmid\x18\x06 \x01(\tB\x03\xc8>\x14\x12\x16\n\x0eprevglobaltime\x18\x07 \x01(\x03\"N\n\x0fPlaylistTorrent\x12\x15\n\x08infohash\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x10\n\x03mid\x18\x02 \x02(\tB\x03\xc8>\x14\x12\x12\n\nglobaltime\x18\x03 \x02(\x04\")\n\x0eMissingChannel\x12\x17\n\x0fincludeSnapshot\x18\x01 \x02(\x08\"u\n\nModeration\x12\x12\n\x04text\x18\x01 \x02(\tB\x04\xc8>\xff\x07\x12\x11\n\ttimestamp\x18\x02 \x02(\x03\x12\x10\n\x08severity\x18\x03 \x02(\x03\x12\x15\n\x08\x63\x61usemid\x18\x04 \x02(\tB\x03\xc8>\x14\x12\x17\n\x0f\x63\x61useglobaltime\x18\x05 \x02(\x03\"J\n\x0bMarkTorrent\x12\x15\n\x08infohash\x18\x01 \x02(\tB\x03\xc8>\x14\x12\x11\n\ttimestamp\x18\x02 \x02(\x03\x12\x11\n\x04type\x18\x03 \x02(\tB\x03\xc8>\x18\"9\n\x08Playlist\x12\x12\n\x04name\x18\x01 \x02(\tB\x04\xc8>\xff\x01\x12\x19\n\x0b\x64\x65scription\x18\x02 \x02(\tB\x04\xc8>\xff\x07')
   ,
   dependencies=[defaults_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -181,11 +181,11 @@ _COMMENT = _descriptor.Descriptor(
       options=None),
     _descriptor.FieldDescriptor(
       name='playlistpacket', full_name='channel.Comment.playlistpacket', index=2,
-      number=3, type=9, cpp_type=9, label=2,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
+      number=3, type=3, cpp_type=2, label=2,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\024'))),
+      options=None),
     _descriptor.FieldDescriptor(
       name='infohash', full_name='channel.Comment.infohash', index=3,
       number=4, type=9, cpp_type=9, label=2,
@@ -195,42 +195,42 @@ _COMMENT = _descriptor.Descriptor(
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\024'))),
     _descriptor.FieldDescriptor(
       name='replytomid', full_name='channel.Comment.replytomid', index=4,
-      number=5, type=9, cpp_type=9, label=2,
+      number=5, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\024'))),
     _descriptor.FieldDescriptor(
       name='replytoglobaltime', full_name='channel.Comment.replytoglobaltime', index=5,
-      number=6, type=3, cpp_type=2, label=2,
+      number=6, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
       name='replyaftermid', full_name='channel.Comment.replyaftermid', index=6,
-      number=7, type=9, cpp_type=9, label=2,
+      number=7, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\024'))),
     _descriptor.FieldDescriptor(
       name='replyafterglobaltime', full_name='channel.Comment.replyafterglobaltime', index=7,
-      number=8, type=3, cpp_type=2, label=2,
+      number=8, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
       name='playlistmid', full_name='channel.Comment.playlistmid', index=8,
-      number=9, type=9, cpp_type=9, label=2,
+      number=9, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\024'))),
     _descriptor.FieldDescriptor(
       name='playlistglobaltime', full_name='channel.Comment.playlistglobaltime', index=9,
-      number=10, type=3, cpp_type=2, label=2,
+      number=10, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -247,7 +247,7 @@ _COMMENT = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=260,
-  serialized_end=518,
+  serialized_end=513,
 )
 
 
@@ -318,8 +318,8 @@ _MODIFICATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=521,
-  serialized_end=697,
+  serialized_start=516,
+  serialized_end=692,
 )
 
 
@@ -362,8 +362,8 @@ _PLAYLISTTORRENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=699,
-  serialized_end=777,
+  serialized_start=694,
+  serialized_end=772,
 )
 
 
@@ -392,8 +392,8 @@ _MISSINGCHANNEL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=779,
-  serialized_end=820,
+  serialized_start=774,
+  serialized_end=815,
 )
 
 
@@ -450,8 +450,8 @@ _MODERATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=822,
-  serialized_end=939,
+  serialized_start=817,
+  serialized_end=934,
 )
 
 
@@ -494,8 +494,8 @@ _MARKTORRENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=941,
-  serialized_end=1015,
+  serialized_start=936,
+  serialized_end=1010,
 )
 
 
@@ -531,8 +531,8 @@ _PLAYLIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1017,
-  serialized_end=1074,
+  serialized_start=1012,
+  serialized_end=1069,
 )
 
 _TORRENT_FILE.containing_type = _TORRENT
@@ -625,8 +625,6 @@ _CHANNEL.fields_by_name['description'].has_options = True
 _CHANNEL.fields_by_name['description']._options = _descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\377\007'))
 _TORRENT.fields_by_name['infohash'].has_options = True
 _TORRENT.fields_by_name['infohash']._options = _descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\024'))
-_COMMENT.fields_by_name['playlistpacket'].has_options = True
-_COMMENT.fields_by_name['playlistpacket']._options = _descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\024'))
 _COMMENT.fields_by_name['infohash'].has_options = True
 _COMMENT.fields_by_name['infohash']._options = _descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\310>\024'))
 _COMMENT.fields_by_name['replytomid'].has_options = True
