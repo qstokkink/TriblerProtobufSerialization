@@ -372,13 +372,8 @@ class Serializer:
                 # another message.
                 struct.ParseFromString(data)
                 initialized = struct.IsInitialized()
-                if (not initialized) and logging.getLogger().isEnabledFor(logging.DEBUG):
-                    try:
-                        struct.SerializeToString()
-                        initialized = True
-                    except google.protobuf.message.EncodeError, ee:
-                        logging.debug(str(ee))
-                break
+                if initialized or len(data) == 0:
+                    break
             except google.protobuf.message.DecodeError, e:
                 pass
             if not persistent_end:
