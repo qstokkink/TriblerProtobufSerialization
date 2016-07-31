@@ -364,14 +364,21 @@ class Serializer:
         initialized = False
         while len(data) >= 0:
             try:
-                # MergeFromString will ignore all data after it
+                # ParseFromString will ignore all data after it
                 # has finished parsing a message from the start
                 # of the data. By default `message + garbage`
                 # will parse `message` perfectly fine.
                 # This becomes a problem when `garbage` contains
                 # another message.
                 struct.ParseFromString(data)
-                initialized = struct.IsInitialized()
+                # We cannot call IsInitialized here, as it will
+                # not see itself as initialized yet (for some
+                # reason).
+                try:
+                    struct.SerializeToString()
+                    initialized = True
+                except google.protobuf.message.EncodeError:
+                    pass
                 break
             except google.protobuf.message.DecodeError, e:
                 pass
