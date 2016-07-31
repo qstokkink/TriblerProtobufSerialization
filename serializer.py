@@ -371,14 +371,13 @@ class Serializer:
                 # This becomes a problem when `garbage` contains
                 # another message.
                 struct.ParseFromString(data)
-                # We cannot call IsInitialized here, as it will
-                # not see itself as initialized yet (for some
-                # reason).
-                try:
-                    struct.SerializeToString()
-                    initialized = True
-                except google.protobuf.message.EncodeError:
-                    pass
+                initialized = struct.IsInitialized()
+                if (not initialized) and logging.getLogger().isEnabledFor(logging.DEBUG):
+                    try:
+                        struct.SerializeToString()
+                        initialized = True
+                    except google.protobuf.message.EncodeError, ee:
+                        logging.debug(str(ee))
                 break
             except google.protobuf.message.DecodeError, e:
                 pass
